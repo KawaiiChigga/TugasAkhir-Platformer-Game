@@ -1,0 +1,494 @@
+fileFormatVersion: 2
+guid: 0c85a27a4a694ea48bf8d9227e1f1c5e
+timeCreated: 1523556616
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Headrobotman
+    21300002: A2D Robot - Copy_1
+    21300004: HeadRobotman
+    21300006: A2D Robot - Copy_3
+    21300008: A2D Robot - Copy_4
+    21300010: A2D Robot - Copy_5
+    21300012: A2D Robot - Copy_6
+    21300014: A2D Robot - Copy_7
+    21300016: A2D Robot - Copy_8
+    21300018: A2D Robot - Copy_9
+    21300020: HandShoot
+    21300022: A2D Robot - Copy_11
+    21300024: A2D Robot - Copy_12
+    21300026: A2D Robot - Copy_13
+    21300028: A2D Robot - Copy_14
+    21300030: A2D Robot - Copy_15
+    21300032: A2D Robot - Copy_0
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 9
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Headrobotman
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 705
+        width: 292
+        height: 304
+      alignment: 9
+      pivot: {x: 0.459433, y: 0.118136}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: A2D Robot - Copy_1
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 712
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HeadRobotman
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 704
+        width: 293
+        height: 306
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: A2D Robot - Copy_3
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 595
+        width: 178
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: A2D Robot - Copy_4
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 598
+        width: 60
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: A2D Robot - Copy_5
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 408
+        width: 226
+        height: 182
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: A2D Robot - Copy_6
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 546
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: A2D Robot - Copy_7
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 447
+        width: 61
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: A2D Robot - Copy_8
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 250
+        width: 92
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: A2D Robot - Copy_9
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 284
+        width: 66
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HandShoot
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 350
+        width: 64
+        height: 88
+      alignment: 9
+      pivot: {x: 0.824398, y: 0.4467406}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: A2D Robot - Copy_11
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 291
+        width: 92
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: A2D Robot - Copy_12
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 244
+        width: 58
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: A2D Robot - Copy_13
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 136
+        width: 78
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: A2D Robot - Copy_14
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 96
+        width: 38
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: A2D Robot - Copy_15
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 12
+        width: 99
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: A2D Robot - Copy_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 703
+        width: 303
+        height: 305
+      alignment: 9
+      pivot: {x: 0.459433, y: 0.118136}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline:
+    - - {x: -375, y: -424}
+      - {x: -397, y: -459}
+      - {x: -397, y: -499}
+      - {x: -392, y: -502}
+      - {x: -310, y: -502}
+      - {x: -294, y: -477}
+      - {x: -294, y: -424}
+    - - {x: -288, y: -277}
+      - {x: -300, y: -273}
+      - {x: -363, y: -273}
+      - {x: -366, y: -277}
+      - {x: -370, y: -304}
+      - {x: -370, y: -370}
+      - {x: -353, y: -410}
+      - {x: -342, y: -417}
+      - {x: -334, y: -418}
+      - {x: -320, y: -418}
+      - {x: -308, y: -409}
+      - {x: -309, y: -387}
+      - {x: -288, y: -359}
+    - - {x: -339, y: -158}
+      - {x: -359, y: -175}
+      - {x: -359, y: -201}
+      - {x: -353, y: -215}
+      - {x: -344, y: -223}
+      - {x: -340, y: -226}
+      - {x: -338, y: -226}
+      - {x: -355, y: -226}
+      - {x: -359, y: -235}
+      - {x: -359, y: -261}
+      - {x: -356, y: -266}
+      - {x: -342, y: -270}
+      - {x: -289, y: -270}
+      - {x: -289, y: -158}
+    - - {x: -490, y: -134}
+      - {x: -490, y: -263}
+      - {x: -486, y: -264}
+      - {x: -394, y: -264}
+      - {x: -394, y: -138}
+      - {x: -405, y: -134}
+    - - {x: -177, y: -162}
+      - {x: -259, y: -162}
+      - {x: -270, y: -170}
+      - {x: -270, y: -203}
+      - {x: -257, y: -223}
+      - {x: -207, y: -223}
+      - {x: -185, y: -216}
+      - {x: -174, y: -211}
+      - {x: -174, y: -172}
+    - - {x: -204, y: -72}
+      - {x: -210, y: -85}
+      - {x: -210, y: -124}
+      - {x: -193, y: -164}
+      - {x: -171, y: -164}
+      - {x: -142, y: -138}
+      - {x: -142, y: -91}
+      - {x: -148, y: -72}
+    - - {x: -307, y: 80}
+      - {x: -467, y: 80}
+      - {x: -490, y: 38}
+      - {x: -490, y: -56}
+      - {x: -465, y: -83}
+      - {x: -441, y: -95}
+      - {x: -352, y: -106}
+      - {x: -269, y: -106}
+      - {x: -260, y: -69}
+      - {x: -260, y: 60}
+    - - {x: -211, y: -56}
+      - {x: -206, y: -67}
+      - {x: -159, y: -67}
+      - {x: -146, y: -63}
+      - {x: -146, y: 33}
+      - {x: -153, y: 76}
+      - {x: -164, y: 81}
+      - {x: -194, y: 81}
+      - {x: -211, y: 69}
+    - - {x: -329, y: 191}
+      - {x: -339, y: 185}
+      - {x: -355, y: 190}
+      - {x: -360, y: 190}
+      - {x: -339, y: 190}
+      - {x: -303, y: 201}
+      - {x: -265, y: 223}
+      - {x: -221, y: 267}
+      - {x: -209, y: 283}
+      - {x: -196, y: 297}
+      - {x: -196, y: 412}
+      - {x: -221, y: 444}
+      - {x: -268, y: 490}
+      - {x: -328, y: 498}
+      - {x: -389, y: 498}
+      - {x: -422, y: 489}
+      - {x: -452, y: 470}
+      - {x: -483, y: 421}
+      - {x: -503, y: 370}
+      - {x: -503, y: 334}
+      - {x: -484, y: 238}
+      - {x: -437, y: 174}
+      - {x: -466, y: 161}
+      - {x: -466, y: 99}
+      - {x: -438, y: 81}
+      - {x: -343, y: 81}
+      - {x: -297, y: 97}
+      - {x: -276, y: 127}
+      - {x: -274, y: 157}
+    - - {x: -194, y: 187}
+      - {x: -210, y: 183}
+      - {x: -210, y: 88}
+      - {x: -200, y: 84}
+      - {x: -153, y: 84}
+      - {x: -146, y: 92}
+      - {x: -146, y: 174}
+      - {x: -157, y: 187}
+    - - {x: 219, y: 311}
+      - {x: 222, y: 325}
+      - {x: 222, y: 378}
+      - {x: 209, y: 426}
+      - {x: 186, y: 459}
+      - {x: 123, y: 500}
+      - {x: 38, y: 500}
+      - {x: 6, y: 498}
+      - {x: -30, y: 480}
+      - {x: -66, y: 430}
+      - {x: -74, y: 383}
+      - {x: -75, y: 356}
+      - {x: -75, y: 314}
+      - {x: -68, y: 259}
+      - {x: -41, y: 208}
+      - {x: 1, y: 190}
+      - {x: 45, y: 190}
+      - {x: 76, y: 194}
+      - {x: 117, y: 205}
+      - {x: 167, y: 235}
+      - {x: 196, y: 266}
+    - - {x: -151, y: 266}
+      - {x: -166, y: 248}
+      - {x: -166, y: 218}
+      - {x: -150, y: 198}
+      - {x: -111, y: 198}
+      - {x: -97, y: 218}
+      - {x: -97, y: 258}
+      - {x: -118, y: 266}
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

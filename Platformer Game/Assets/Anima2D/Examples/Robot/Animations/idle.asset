@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0543fe805424df99fe08ce744cbe49, type: 3}
+  m_Name: idle
+  m_EditorClassIdentifier: 
+  m_PoseEntries:
+  - path: Hips bone
+    localPosition: {x: -0.47618, y: 1.8138, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.7226582, w: 0.6912055}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Hips bone/Neck bone
+    localPosition: {x: 1.4701, y: -0.00000028732, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071067}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Hips bone/L Upper arm bone
+    localPosition: {x: 1.2257278, y: -1.2745899, z: 0.000000062401746}
+    localRotation: {x: 0, y: 0, z: 0.9999973, w: 0.0023201245}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Hips bone/L Upper arm bone/L Arm bone
+    localPosition: {x: 0.9925892, y: 0.00000003934838, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.26663503, w: 0.9637976}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Hips bone/L Upper arm bone/L Arm bone/L Hand bone
+    localPosition: {x: 0.6303457, y: -0.00000008882489, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.042060513, w: -0.9991151}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Hips bone/R Upper arm bone
+    localPosition: {x: 1.2484204, y: 0.7822444, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.9993748, w: 0.03535471}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Hips bone/R Upper arm bone/R Arm bone
+    localPosition: {x: 0.9925892, y: 0.00000003934838, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.2334294, w: 0.9723737}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Hips bone/R Upper arm bone/R Arm bone/R Hand bone
+    localPosition: {x: 0.6303457, y: -0.00000008882489, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.104755335, w: 0.9944981}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Hips bone/L Upper leg bone
+    localPosition: {x: 0.053135633, y: -0.66259897, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.9876183, w: 0.156876}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Hips bone/L Upper leg bone/L Leg bone
+    localPosition: {x: 1.0658734, y: 0.00000015180558, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.24442397, w: 0.9696685}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Hips bone/L Upper leg bone/L Leg bone/L Foot bone
+    localPosition: {x: 0.8195973, y: 0, z: -0.00000000674752}
+    localRotation: {x: -0, y: -0, z: 0.772588, w: -0.6349078}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Hips bone/R Upper leg bone
+    localPosition: {x: 0.13000774, y: 0.3324855, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.97559434, w: 0.21958075}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Hips bone/R Upper leg bone/R Leg bone
+    localPosition: {x: 1.0744867, y: 0, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.38352484, w: 0.9235306}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Hips bone/R Upper leg bone/R Leg bone/R Foot bone
+    localPosition: {x: 0.8197327, y: 0, z: -0.0000000067475483}
+    localRotation: {x: -0, y: -0, z: 0.8262938, w: -0.56323934}
+    localScale: {x: 1, y: 1, z: 1}
