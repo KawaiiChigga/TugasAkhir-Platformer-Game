@@ -8,7 +8,7 @@ public abstract class Robot : MonoBehaviour {
     [HideInInspector] public bool jump = false;
     [HideInInspector] public bool dash = false;
 
-    public float moveSpeed = 1000f;
+    public float moveSpeed = 45f;
     public float maxSpeed = 8f;
     public float jumpForce = 750f;
     protected Transform groundCheck;
@@ -20,7 +20,7 @@ public abstract class Robot : MonoBehaviour {
     public bool grounded = false;
     protected bool dashing = false;
     protected Animator anim;
-    public Rigidbody2D rb2d;
+    protected Rigidbody2D rb2d;
     protected State currentState;
     protected float dashTime;
     // Use this for initialization
@@ -81,4 +81,5 @@ public abstract class Robot : MonoBehaviour {
     {
         anim.SetTrigger(animation);
     }
+
 }

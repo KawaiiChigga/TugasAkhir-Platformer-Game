@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IPlayer : Robot {
 
     public GameObject healthUI;
-
     // Use this for initialization
     void Start () {
         healthUI.SendMessage("UpdateHealth", currentHealth);
@@ -42,8 +42,18 @@ public class IPlayer : Robot {
             Jump();
         }
 
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            SceneManager.LoadSceneAsync(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            SceneManager.LoadSceneAsync(1);
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
+            SetState(new DamagedState(this));
             currentHealth -= 1;
             healthUI.SendMessage("UpdateHealth", currentHealth);
         }
@@ -52,20 +62,15 @@ public class IPlayer : Robot {
     private void FixedUpdate() //Ga kepengaruh frame per second
     {
         currentState.Tick();
-
-        float h = Input.GetAxis("Horizontal"); // Input Kiri dan Kanan
-
-        //Movement Code//
-        anim.SetFloat("Speed", Mathf.Abs(h));
+        float h = GetMovementInput();       
         horizVel = Mathf.Clamp(moveDampening * horizVel + (moveSpeed / rb2d.mass) * h * Time.deltaTime, -maxSpeed, maxSpeed);
         Vector3 vel = rb2d.velocity;
         vel.x = horizVel;
-
-        if (!dashing)
+        anim.SetFloat("Speed", Mathf.Abs(horizVel));
+        if (!CheckState("DashingState"))
         {
             rb2d.velocity = vel;
         }
-
         if ((h < -0.01f && facingRight) || (h > 0.01f && !facingRight))
         {
 
@@ -75,7 +80,8 @@ public class IPlayer : Robot {
 
     }
 
-    
-
-
+    private float GetMovementInput()
+    {
+        return Input.GetAxis("Horizontal"); // Input Kiri dan Kanan
+    }
 }

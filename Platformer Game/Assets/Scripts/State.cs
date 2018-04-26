@@ -23,6 +23,7 @@ public class GroundedState : State
 
     public GroundedState(Robot robot) : base(robot)
     {
+
     }
 
     public override void Tick()
@@ -93,6 +94,32 @@ public class DashingState : State
     {
         timer = 0f;
         robot.TriggerAnimation("Skill");
+    }
+
+    public override void OnStateExit()
+    {
+
+    }
+}
+
+public class DamagedState : State
+{
+    private Vector3 destination;
+    private Component[] bodyparts;
+
+    public DamagedState(Robot robot) : base(robot)
+    {
+
+    }
+
+    public override void Tick()
+    {
+
+    }
+
+    public override void OnStateEnter()
+    {
+
     }
 
     public override void OnStateExit()
