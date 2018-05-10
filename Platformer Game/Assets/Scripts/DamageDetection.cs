@@ -20,6 +20,10 @@ public class DamageDetection : MonoBehaviour {
         if(gameObject.tag == "Enemy" || gameObject.tag == "Player")
         {
             gameObject.GetComponent<Robot>().currentHealth -= (int)damage;
+            if (gameObject.GetComponent<Robot>().currentHealth <= 0)
+            {
+                gameObject.GetComponent<Robot>().Kill();
+            }
         }
     }
 }

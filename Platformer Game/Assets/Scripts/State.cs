@@ -4,17 +4,17 @@ using UnityEngine;
 
 public abstract class State
 {
-        protected Robot robot;
+    protected Robot robot;
 
-        public abstract void Tick();
+    public abstract void Tick();
 
-        public virtual void OnStateEnter() { }
-        public virtual void OnStateExit() { }
+    public virtual void OnStateEnter() { }
+    public virtual void OnStateExit() { }
 
-        public State(Robot robot)
-        {
-            this.robot = robot;
-        }
+    public State(Robot robot)
+    {
+        this.robot = robot;
+    }
 }
 
 public class GroundedState : State
@@ -74,7 +74,7 @@ public class DashingState : State
 
     public DashingState(Robot robot) : base(robot)
     {
-        
+
     }
 
     public override void Tick()

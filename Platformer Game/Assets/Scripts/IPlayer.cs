@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class IPlayer : Robot {
+public class IPlayer : Robot
+{
 
     public GameObject healthUI;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         healthUI.SendMessage("UpdateHealth", currentHealth);
         SetState(new GroundedState(this));
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         // Check if Player is touching a ground
+
         grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
         if (!CheckState("DashingState"))
@@ -57,12 +61,17 @@ public class IPlayer : Robot {
             currentHealth -= 1;
             healthUI.SendMessage("UpdateHealth", currentHealth);
         }
+
+        if (Input.GetButton("Fire1"))
+        {
+            GetComponentInChildren<WeaponManager>().ValidFire();
+        }
     }
 
     private void FixedUpdate() //Ga kepengaruh frame per second
     {
         currentState.Tick();
-        float h = GetMovementInput();       
+        float h = GetMovementInput();
         horizVel = Mathf.Clamp(moveDampening * horizVel + (moveSpeed / rb2d.mass) * h * Time.deltaTime, -maxSpeed, maxSpeed);
         Vector3 vel = rb2d.velocity;
         vel.x = horizVel;
@@ -83,5 +92,10 @@ public class IPlayer : Robot {
     private float GetMovementInput()
     {
         return Input.GetAxis("Horizontal"); // Input Kiri dan Kanan
+    }
+
+    public override void Kill()
+    {
+        Debug.Log("YOU DIED");
     }
 }

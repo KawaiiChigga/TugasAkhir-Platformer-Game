@@ -53,6 +53,12 @@ public class Prototype : MonoBehaviour
             var instanceIdx = _instancePool.Count - 1;
             instance = _instancePool[instanceIdx];
             _instancePool.RemoveAt(instanceIdx);
+            instance.transform.localPosition = transform.localPosition;
+            instance.transform.localRotation = transform.localRotation;
+            instance.transform.localScale = transform.localScale;
+            instance.transform.GetChild(0).localPosition = instance.transform.GetChild(0).localPosition;
+            instance.transform.GetChild(0).localRotation = instance.transform.GetChild(0).localRotation;
+            instance.transform.GetChild(0).localScale = instance.transform.GetChild(0).localScale;
         }
 
         // Instantiate fresh instance

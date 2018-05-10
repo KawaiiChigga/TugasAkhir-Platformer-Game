@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Robot : MonoBehaviour {
+public abstract class Robot : MonoBehaviour
+{
 
     [HideInInspector] public bool facingRight = true;
     [HideInInspector] public bool jump = false;
@@ -23,21 +24,24 @@ public abstract class Robot : MonoBehaviour {
     protected Rigidbody2D rb2d;
     protected State currentState;
     protected float dashTime;
+
     // Use this for initialization
-    void Awake () {
+    void Awake()
+    {
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         groundCheck = gameObject.transform.Find("groundCheck").GetComponent<Transform>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
     }
 
     // Ngga kepengaruh frame rate   
     private void FixedUpdate()
     {
-        
+
     }
 
     public void Jump()
@@ -47,6 +51,8 @@ public abstract class Robot : MonoBehaviour {
             rb2d.AddForce(new Vector2(0, jumpForce));
         }
     }
+
+    abstract public void Kill();
 
     public void Dash()
     {
@@ -81,5 +87,7 @@ public abstract class Robot : MonoBehaviour {
     {
         anim.SetTrigger(animation);
     }
+
+
 
 }

@@ -7,40 +7,57 @@ public class WeaponManager : MonoBehaviour
 
     private Robot robot;       // Reference to the PlayerControl script.
     private Animator anim;                  // Reference to the Animator component.
-
+    public float cooldown;
+    private float cdtimer;
 
     void Awake()
     {
         // Setting up the references.
-        anim = transform.root.gameObject.GetComponentInParent<Animator>();
-        robot = transform.root.GetComponent<Robot>();
+        anim = transform.parent.gameObject.GetComponentInParent<Animator>();
+        robot = transform.parent.GetComponentInParent<Robot>();
+        cdtimer = cooldown; 
     }
 
 
     void Update()
     {
-        // If the fire button is pressed...
-        if (Input.GetButtonDown("Fire1"))
-        {
-            // ... set the animator Shoot trigger parameter and play the audioclip.
-            anim.SetTrigger("Shoot");
-            GetComponent<AudioSource>().Play();
 
-            // If the player is facing right...
-            if (robot.facingRight)
-            {
-                // ... instantiate the rocket facing right and set it's velocity to the right. 
-                Rigidbody2D bulletInstance = Instantiate(rocket, transform.position, Quaternion.Euler(new Vector3(0, 0, 0))) as Rigidbody2D;
-                float bulletSpeed = bulletInstance.GetComponent<Projectile>().speed;
-                bulletInstance.velocity = new Vector2(bulletSpeed, 0);
-            }
-            else
-            {
-                // Otherwise instantiate the rocket facing left and set it's velocity to the left.
-                Rigidbody2D bulletInstance = Instantiate(rocket, transform.position, Quaternion.Euler(new Vector3(0, 0, 180f))) as Rigidbody2D;
-                float bulletSpeed = bulletInstance.GetComponent<Projectile>().speed;
-                bulletInstance.velocity = new Vector2(-bulletSpeed, 0);
-            }
+    }
+
+    void FixedUpdate()
+    {
+        cdtimer += Time.deltaTime;
+    }
+
+    public void ValidFire()
+    {
+        if (cdtimer >= cooldown)
+        {
+            Shoot();
+            cdtimer = 0f;
+        }
+    }
+
+    void Shoot()
+    {
+        // ... set the animator Shoot trigger parameter and play the audioclip.
+        anim.SetTrigger("Shoot");
+        GetComponent<AudioSource>().Play();
+
+        // If the player is facing right...
+        if (robot.facingRight)
+        {
+            // ... instantiate the rocket facing right and set it's velocity to the right. 
+            Rigidbody2D bulletInstance = Instantiate(rocket, transform.position, Quaternion.Euler(new Vector3(0, 0, 0))) as Rigidbody2D;
+            float bulletSpeed = bulletInstance.GetComponent<Projectile>().speed;
+            bulletInstance.velocity = new Vector2(bulletSpeed, 0);
+        }
+        else
+        {
+            // Otherwise instantiate the rocket facing left and set it's velocity to the left.
+            Rigidbody2D bulletInstance = Instantiate(rocket, transform.position, Quaternion.Euler(new Vector3(0, 0, 180f))) as Rigidbody2D;
+            float bulletSpeed = bulletInstance.GetComponent<Projectile>().speed;
+            bulletInstance.velocity = new Vector2(-bulletSpeed, 0);
         }
     }
 }

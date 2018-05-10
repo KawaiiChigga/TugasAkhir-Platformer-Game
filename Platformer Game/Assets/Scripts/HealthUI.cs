@@ -12,7 +12,7 @@ public class HealthUI : MonoBehaviour {
 
     // Update is called once per frame
     public void UpdateHealth (int health) {
-		for(int i = 0; i < healths.Length; i++)
+        for (int i = 0; i < healths.Length; i++)
         {
             if (i < health)
             {

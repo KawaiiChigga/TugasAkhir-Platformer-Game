@@ -133,4 +133,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rocket: {fileID: 50022361797674816, guid: 0a842b92d55d401489b8e54e2656054e, type: 2}
-  speed: 20
+  cooldown: 1.5

@@ -32,14 +32,14 @@ public class Projectile : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         // If it hits an enemy...
-        if (col.tag == "Enemy" || col.tag == "Destroyable")
+        if (col.tag == "Enemy" || col.tag == "Destroyable" || col.tag == "Player")
         {
             // ... find the Enemy script and call the Hurt function.
             // col.gameObject.GetComponent<Enemy>().Hurt();
 
             // Call the explosion instantiation.
             OnExplode();
-            col.transform.SendMessage("Damaged", damage);
+            col.SendMessageUpwards("Damaged", damage);
             // Destroy the rocket.
             Destroy(gameObject);
         }
