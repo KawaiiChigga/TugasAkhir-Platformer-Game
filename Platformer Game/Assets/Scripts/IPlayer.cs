@@ -19,7 +19,7 @@ public class IPlayer : Robot
     {
         // Check if Player is touching a ground
 
-        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground")) || Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Projectile"));
 
         if (!CheckState("DashingState"))
         {
@@ -57,22 +57,32 @@ public class IPlayer : Robot
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            SetState(new DamagedState(this));
             currentHealth -= 1;
-            healthUI.SendMessage("UpdateHealth", currentHealth);
+            HealthChange();
+        }
+        /* Example of no command pattern
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Time.timeScale /= 2f;
         }
 
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Time.timeScale = 1f;
+        }
+        
         if (Input.GetButton("Fire1"))
         {
             GetComponentInChildren<WeaponManager>().ValidFire();
         }
+        */
     }
 
     private void FixedUpdate() //Ga kepengaruh frame per second
     {
         currentState.Tick();
         float h = GetMovementInput();
-        horizVel = Mathf.Clamp(moveDampening * horizVel + (moveSpeed / rb2d.mass) * h * Time.deltaTime, -maxSpeed, maxSpeed);
+        horizVel = Mathf.Clamp(moveDampening * horizVel + (moveSpeed / rb2d.mass) * h / Time.timeScale  * Time.deltaTime, -maxSpeed, maxSpeed);
         Vector3 vel = rb2d.velocity;
         vel.x = horizVel;
         anim.SetFloat("Speed", Mathf.Abs(horizVel));
@@ -98,4 +108,12 @@ public class IPlayer : Robot
     {
         Debug.Log("YOU DIED");
     }
+
+    public override void HealthChange()
+    {
+        SetState(new DamagedState(this));
+        healthUI.SendMessage("UpdateHealth", currentHealth);
+    }
+
+    
 }

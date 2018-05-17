@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114676201673107160}
   m_Layer: 11
   m_Name: Rocket
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1600760054199272}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.7, y: -3.031, z: 0}
+  m_LocalPosition: {x: 9.220493, y: -7.5250835, z: 0}
   m_LocalScale: {x: 0.1575016, y: 0.1575016, z: 0.1575016}
   m_Children: []
   m_Father: {fileID: 0}
@@ -54,15 +54,15 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 50000
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 6
 --- !u!61 &61135781025595228
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -71,8 +71,8 @@ BoxCollider2D:
   m_GameObject: {fileID: 1600760054199272}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_Material: {fileID: 6200000, guid: a46f4a1a118d5b846b90f8afee89db99, type: 2}
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.052485228, y: 0.026904225}
@@ -100,9 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 1401014170652020, guid: 30c0471f0f957c242ba9ce35fe53b559, type: 2}
-  lifetime: 1
-  speed: 20
-  damage: 10
+  lifetime: 3
+  speed: 12
+  damage: 1
+  penetrating: 0
 --- !u!212 &212533285631690940
 SpriteRenderer:
   m_ObjectHideFlags: 1

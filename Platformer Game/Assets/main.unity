@@ -1540,6 +1540,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!4 &318660388 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4175202485986930, guid: c66a4cbd3b80e4c4eac3fd3a4c87bc01,
+    type: 2}
+  m_PrefabInternal: {fileID: 632954303}
 --- !u!1 &328306561
 GameObject:
   m_ObjectHideFlags: 0
@@ -2185,7 +2190,7 @@ GameObject:
   - component: {fileID: 501324453}
   m_Layer: 10
   m_Name: Robotman
-  m_TagString: Player
+  m_TagString: Rider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2801,6 +2806,53 @@ MonoBehaviour:
     m_RestoreDefaultPose: 1
     targetPosition: {x: 15.642, y: -5.712, z: 0}
     flip: 0
+--- !u!1001 &632954303
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 976586563}
+    m_Modifications:
+    - target: {fileID: 4175202485986930, guid: c66a4cbd3b80e4c4eac3fd3a4c87bc01, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -4.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175202485986930, guid: c66a4cbd3b80e4c4eac3fd3a4c87bc01, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175202485986930, guid: c66a4cbd3b80e4c4eac3fd3a4c87bc01, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175202485986930, guid: c66a4cbd3b80e4c4eac3fd3a4c87bc01, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175202485986930, guid: c66a4cbd3b80e4c4eac3fd3a4c87bc01, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175202485986930, guid: c66a4cbd3b80e4c4eac3fd3a4c87bc01, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175202485986930, guid: c66a4cbd3b80e4c4eac3fd3a4c87bc01, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175202485986930, guid: c66a4cbd3b80e4c4eac3fd3a4c87bc01, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114985340567314626, guid: c66a4cbd3b80e4c4eac3fd3a4c87bc01,
+        type: 2}
+      propertyPath: cooldown
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c66a4cbd3b80e4c4eac3fd3a4c87bc01, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &669835134 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4932546040546120, guid: eebc1b00d34fafa4e9eb946ac55fed8e,
@@ -2897,7 +2949,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 677263410}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 34.095284, y: 3.420196, z: 1.2131666}
+  m_LocalPosition: {x: 47.19, y: 3.420196, z: 1.2131666}
   m_LocalScale: {x: 25.92, y: 0.21649495, z: 1}
   m_Children: []
   m_Father: {fileID: 1868354930}
@@ -3144,7 +3196,7 @@ GameObject:
   - component: {fileID: 805312827}
   m_Layer: 10
   m_Name: EnemyRobot
-  m_TagString: Enemy
+  m_TagString: Rider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3186,6 +3238,7 @@ MonoBehaviour:
   currentHealth: 50
   grounded: 0
   findEdge: 1
+  isFlyer: 1
 --- !u!114 &805312821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3960,9 +4013,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 976586562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.95, y: 2.92, z: 0}
+  m_LocalPosition: {x: -3.53, y: 2.92, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 318660388}
   - {fileID: 1187078102}
   m_Father: {fileID: 805312825}
   m_RootOrder: 0
@@ -3978,6 +4032,7 @@ GameObject:
   - component: {fileID: 1009969401}
   - component: {fileID: 1009969400}
   - component: {fileID: 1009969403}
+  - component: {fileID: 1009969404}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -4042,6 +4097,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Spawner1: {fileID: 932786661}
+--- !u!114 &1009969404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1009969399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8b6b1a727c4e145a47bbc7a68c3ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 501324451}
 --- !u!1 &1053577748
 GameObject:
   m_ObjectHideFlags: 0
@@ -4786,7 +4853,7 @@ GameObject:
   m_Icon: {fileID: -215833656, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1187078102
 Transform:
   m_ObjectHideFlags: 0
@@ -4799,7 +4866,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 976586563}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1187078103
 MonoBehaviour:
@@ -5785,7 +5852,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.5563631, y: 2.85}
+  m_Offset: {x: -0.6502086, y: 2.8967109}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5796,7 +5863,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.0061169, y: 5.5}
+  m_Size: {x: 2.030121, y: 5.406578}
   m_EdgeRadius: 0
 --- !u!1 &1443586575
 GameObject:

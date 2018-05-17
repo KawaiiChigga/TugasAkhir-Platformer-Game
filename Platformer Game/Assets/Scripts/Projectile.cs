@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     public float lifetime;
     public float speed = 20f;
     public float damage = 10f;
+    public bool penetrating=false;
 
     void Start()
     {
@@ -34,21 +35,27 @@ public class Projectile : MonoBehaviour
         // If it hits an enemy...
         if (col.tag == "Enemy" || col.tag == "Destroyable" || col.tag == "Player")
         {
-            // ... find the Enemy script and call the Hurt function.
-            // col.gameObject.GetComponent<Enemy>().Hurt();
-
-            // Call the explosion instantiation.
-            OnExplode();
-            col.SendMessageUpwards("Damaged", damage);
             // Destroy the rocket.
-            Destroy(gameObject);
+            if (!penetrating)
+            {
+                Destroy(gameObject);
+            }
+            col.SendMessageUpwards("Damaged", damage);
         }
         // Otherwise if the player manages to shoot himself...
         else
         {
-            // Instantiate the explosion and destroy the rocket.
-            OnExplode();
+             
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Collider2D col = collision.collider;
+        if (col.tag!= "Rider")
+        {
+
             Destroy(gameObject);
         }
+
     }
 }

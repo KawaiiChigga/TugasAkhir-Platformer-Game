@@ -10,7 +10,7 @@ public class WeaponManager : MonoBehaviour
     public float cooldown;
     private float cdtimer;
 
-    void Awake()
+    void Start()
     {
         // Setting up the references.
         anim = transform.parent.gameObject.GetComponentInParent<Animator>();

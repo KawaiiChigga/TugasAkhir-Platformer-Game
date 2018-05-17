@@ -17,12 +17,13 @@ public class DamageDetection : MonoBehaviour {
     public void Damaged(float damage)
     {
         Debug.Log(gameObject.name + " receives " + damage + " damage");
-        if(gameObject.tag == "Enemy" || gameObject.tag == "Player")
+        if(gameObject.tag=="Rider")
         {
-            gameObject.GetComponent<Robot>().currentHealth -= (int)damage;
-            if (gameObject.GetComponent<Robot>().currentHealth <= 0)
+            gameObject.GetComponentInParent<Robot>().currentHealth -= (int)damage;
+            gameObject.GetComponentInParent<Robot>().HealthChange();
+            if (gameObject.GetComponentInParent<Robot>().currentHealth <= 0)
             {
-                gameObject.GetComponent<Robot>().Kill();
+                gameObject.GetComponentInParent<Robot>().Kill();
             }
         }
     }

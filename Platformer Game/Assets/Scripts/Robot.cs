@@ -48,7 +48,7 @@ public abstract class Robot : MonoBehaviour
     {
         if (CheckState("GroundedState"))
         {
-            rb2d.AddForce(new Vector2(0, jumpForce));
+            rb2d.AddForce(new Vector2(0, jumpForce / Time.timeScale));
         }
     }
 
@@ -88,6 +88,10 @@ public abstract class Robot : MonoBehaviour
         anim.SetTrigger(animation);
     }
 
+    public abstract void HealthChange();
 
-
+    public void Shoot()
+    {
+        GetComponentInChildren<WeaponManager>().ValidFire();
+    }
 }

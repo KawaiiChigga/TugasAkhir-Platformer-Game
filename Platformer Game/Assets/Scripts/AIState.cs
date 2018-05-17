@@ -66,3 +66,28 @@ public class ShootingState : AIState
 
     }
 }
+
+public class HoverState : AIState
+{
+    private Vector3 destination;
+
+    public HoverState(IEnemy enemy) : base(enemy)
+    {
+        
+    }
+
+    public override void Tick()
+    {
+        enemy.Hover();
+    }
+
+    public override void OnStateEnter()
+    {
+
+    }
+
+    public override void OnStateExit()
+    {
+
+    }
+}

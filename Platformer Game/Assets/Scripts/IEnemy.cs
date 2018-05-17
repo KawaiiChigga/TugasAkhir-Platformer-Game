@@ -7,6 +7,7 @@ public class IEnemy : Robot
     private Transform fallCheck;
     public bool findEdge = true;
     protected AIState currentAIState;
+    public bool isFlyer = false;
 
     void Start()
     {
@@ -15,7 +16,16 @@ public class IEnemy : Robot
         groundCheck = gameObject.transform.Find("groundCheck").GetComponent<Transform>();
         fallCheck = gameObject.transform.Find("fallCheck").GetComponent<Transform>();
         SetState(new GroundedState(this));
-        SetAIState(new PatrollingState(this));
+        if (!isFlyer)
+        {
+            SetAIState(new PatrollingState(this));
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().gravityScale = 0;
+            SetAIState(new HoverState(this));
+
+        }
     }
 
     void Update()
@@ -34,10 +44,10 @@ public class IEnemy : Robot
         currentAIState.Tick();
         if (jump)
         {
-            rb2d.AddForce(new Vector2(0, jumpForce));
+            Jump();
             jump = false;
         }
-        transform.Find("WeaponSlot").GetComponentInChildren<WeaponManager>().ValidFire();
+        Shoot();
     }
 
     public void Patrol()
@@ -51,7 +61,7 @@ public class IEnemy : Robot
         {
             h = -1f;
         }
-        horizVel = Mathf.Clamp(moveDampening * horizVel + (moveSpeed / rb2d.mass) * h * Time.deltaTime, -maxSpeed, maxSpeed);
+        horizVel = Mathf.Clamp(moveDampening * horizVel + (moveSpeed / rb2d.mass) * h / Time.timeScale * Time.deltaTime, -maxSpeed, maxSpeed);
         Vector3 vel = rb2d.velocity;
         vel.x = horizVel;
         anim.SetFloat("Speed", Mathf.Abs(horizVel));
@@ -60,6 +70,14 @@ public class IEnemy : Robot
             rb2d.velocity = vel;
         }
         DetectEdge();
+    }
+
+    public void Hover()
+    {
+        float v = -5f;
+        horizVel = Mathf.Clamp(moveDampening * horizVel + (moveSpeed / rb2d.mass) * v / Time.timeScale * Time.deltaTime, -maxSpeed, maxSpeed);
+        Vector3 vel = rb2d.velocity;
+        vel.y = horizVel;
     }
 
     public void DetectEdge()
@@ -102,6 +120,10 @@ public class IEnemy : Robot
             Debug.Log("Touch");
         }
 
+    }
+    public override void HealthChange()
+    {
+        
     }
 
 }

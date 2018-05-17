@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DebugOption : MonoBehaviour {
-    public SpawnerScript Spawner1;
+    public Spawner Spawner1;
 	// Use this for initialization
 	void Start () {
 		
