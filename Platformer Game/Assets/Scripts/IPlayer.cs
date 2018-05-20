@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class IPlayer : Robot
 {
-
-    public GameObject healthUI;
+    private float dashTimer;
+    public GameObject UIManager;
     // Use this for initialization
-    void Start()
+    void Awake()
     {
-        healthUI.SendMessage("UpdateHealth", currentHealth);
+        UIManager.SendMessage("UpdateHealth", currentHealth);
         SetState(new GroundedState(this));
     }
 
@@ -38,7 +38,11 @@ public class IPlayer : Robot
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            SetState(new DashingState(this));
+            if (dashRecharged)
+            {
+                SetState(new DashingState(this));
+            }
+            
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -92,9 +96,7 @@ public class IPlayer : Robot
         }
         if ((h < -0.01f && facingRight) || (h > 0.01f && !facingRight))
         {
-
-            transform.localScale = Vector3.Scale(transform.localScale, mirrorX);
-            facingRight = !facingRight;
+            ChangeDirection();
         }
 
     }
@@ -107,12 +109,14 @@ public class IPlayer : Robot
     public override void Kill()
     {
         Debug.Log("YOU DIED");
+        DataManager.instance.SetGameState(new GameOverState());
+        Destroy(gameObject);
     }
 
     public override void HealthChange()
     {
         SetState(new DamagedState(this));
-        healthUI.SendMessage("UpdateHealth", currentHealth);
+        UIManager.SendMessage("UpdateHealth", currentHealth);
     }
 
     

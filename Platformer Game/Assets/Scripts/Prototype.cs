@@ -94,7 +94,7 @@ public class Prototype : MonoBehaviour
     {
         if (isOriginalPrototype)
         {
-            Debug.LogError("Can't return to pool because the original prototype doesn't exist. Is this prototype the original?");
+            Debug.Log("Can't return to pool because the original prototype doesn't exist. Is this prototype the original?");
             Destroy(gameObject);
             return;
         }

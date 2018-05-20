@@ -8,7 +8,8 @@ public class IEnemy : Robot
     public bool findEdge = true;
     protected AIState currentAIState;
     public bool isFlyer = false;
-
+    public AnimationCurve hoverCurve;
+    private float startingY;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -22,24 +23,31 @@ public class IEnemy : Robot
         }
         else
         {
-            GetComponent<Rigidbody2D>().gravityScale = 0;
             SetAIState(new HoverState(this));
-
+            startingY = transform.localPosition.y;
         }
     }
 
     void Update()
-    {    
-        findEdge = Physics2D.Linecast(transform.position, fallCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-        if (grounded && currentState.GetType().Name != "GroundedState")
+    {
+        if (!isFlyer)
         {
-            SetState(new GroundedState(this));
+            findEdge = Physics2D.Linecast(transform.position, fallCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+            grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+            if (grounded && currentState.GetType().Name != "GroundedState")
+            {
+                SetState(new GroundedState(this));
+            }
+        }
+        else
+        {
+            SetState(new AirborneState(this));
         }
     }
 
     private void FixedUpdate()
     {
+        Shoot();
         currentState.Tick();
         currentAIState.Tick();
         if (jump)
@@ -47,7 +55,6 @@ public class IEnemy : Robot
             Jump();
             jump = false;
         }
-        Shoot();
     }
 
     public void Patrol()
@@ -65,27 +72,20 @@ public class IEnemy : Robot
         Vector3 vel = rb2d.velocity;
         vel.x = horizVel;
         anim.SetFloat("Speed", Mathf.Abs(horizVel));
-        if (!dashing)
-        {
-            rb2d.velocity = vel;
-        }
+        rb2d.velocity = vel;
         DetectEdge();
     }
 
     public void Hover()
     {
-        float v = -5f;
-        horizVel = Mathf.Clamp(moveDampening * horizVel + (moveSpeed / rb2d.mass) * v / Time.timeScale * Time.deltaTime, -maxSpeed, maxSpeed);
-        Vector3 vel = rb2d.velocity;
-        vel.y = horizVel;
+        transform.localPosition = new Vector3(transform.localPosition.x, startingY + hoverCurve.Evaluate(Time.time), transform.localPosition.z);
     }
 
     public void DetectEdge()
     {
         if (!findEdge && grounded)
         {
-            transform.localScale = Vector3.Scale(transform.localScale, mirrorX);
-            facingRight = !facingRight;
+            ChangeDirection();
         }
     }
 

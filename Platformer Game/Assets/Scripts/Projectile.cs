@@ -45,7 +45,7 @@ public class Projectile : MonoBehaviour
         // Otherwise if the player manages to shoot himself...
         else
         {
-             
+            Destroy(gameObject);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -53,7 +53,6 @@ public class Projectile : MonoBehaviour
         Collider2D col = collision.collider;
         if (col.tag!= "Rider")
         {
-
             Destroy(gameObject);
         }
 

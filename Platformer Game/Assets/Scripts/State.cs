@@ -33,7 +33,7 @@ public class GroundedState : State
 
     public override void OnStateEnter()
     {
-
+        robot.RechargeDash();
     }
 
     public override void OnStateExit()
@@ -79,7 +79,7 @@ public class DashingState : State
 
     public override void Tick()
     {
-        if (timer < 0.2f)
+        if (timer < 0.5f)
         {
             robot.Dash();
             timer += Time.deltaTime;
@@ -90,15 +90,16 @@ public class DashingState : State
         }
     }
 
-    public override void OnStateEnter()
+    public override void OnStateEnter() //Dashing ignore Y physics//
     {
         timer = 0f;
         robot.TriggerAnimation("Skill");
+        robot.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
     }
 
     public override void OnStateExit()
     {
-
+        robot.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }
 

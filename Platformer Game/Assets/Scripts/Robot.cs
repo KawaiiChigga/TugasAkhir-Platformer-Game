@@ -5,10 +5,9 @@ using UnityEngine;
 public abstract class Robot : MonoBehaviour
 {
 
-    [HideInInspector] public bool facingRight = true;
+    public bool facingRight = true;
     [HideInInspector] public bool jump = false;
     [HideInInspector] public bool dash = false;
-
     public float moveSpeed = 45f;
     public float maxSpeed = 8f;
     public float jumpForce = 750f;
@@ -19,15 +18,20 @@ public abstract class Robot : MonoBehaviour
     public int startingHealth = 3;
     public int currentHealth = 3;
     public bool grounded = false;
-    protected bool dashing = false;
     protected Animator anim;
     protected Rigidbody2D rb2d;
     protected State currentState;
-    protected float dashTime;
+    public bool startfacingRight;
+    protected bool dashRecharged;
 
     // Use this for initialization
-    void Awake()
+    void Start()
     {
+        if (startfacingRight == false)
+        {
+            ChangeDirection();
+            facingRight = false;
+        }
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         groundCheck = gameObject.transform.Find("groundCheck").GetComponent<Transform>();
@@ -56,14 +60,15 @@ public abstract class Robot : MonoBehaviour
 
     public void Dash()
     {
-        if (!facingRight)
-        {
-            rb2d.AddForce(new Vector2(-1000, 0));
-        }
-        else
-        {
-            rb2d.AddForce(new Vector2(1000, 0));
-        }
+            if (!facingRight)
+            {
+                rb2d.AddForce(new Vector2(-500, 0));
+            }
+            else
+            {
+                rb2d.AddForce(new Vector2(500, 0));
+            }
+            dashRecharged = false;
     }
 
     public void SetState(State state)
@@ -92,6 +97,22 @@ public abstract class Robot : MonoBehaviour
 
     public void Shoot()
     {
-        GetComponentInChildren<WeaponManager>().ValidFire();
+        if (!CheckState("DashingState")) //No firing when dashing//
+        {
+            GetComponentInChildren<Weapon>().ValidFire();
+        }
     }
+
+    public void ChangeDirection()
+    {
+        transform.localScale = Vector3.Scale(transform.localScale, mirrorX);
+        facingRight = !facingRight;
+    }
+
+    public void RechargeDash()
+    {
+        dashRecharged = true;
+    }
+
+
 }
