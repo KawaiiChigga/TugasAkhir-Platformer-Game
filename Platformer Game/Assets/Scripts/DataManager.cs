@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataManager : MonoBehaviour {
+public class DataManager : MonoBehaviour
+{
     // Only one instance at a time
     public static DataManager instance;
     public static GameState gameState;
@@ -14,7 +15,8 @@ public class DataManager : MonoBehaviour {
     public int lives;
 
     // Use this for initialization
-    void Awake() {
+    void Awake()
+    {
         // If the instance reference has not been set, yet, 
         if (instance == null)
         {
@@ -27,9 +29,13 @@ public class DataManager : MonoBehaviour {
             // the instance reference, destroy this game object.
             Destroy(gameObject);
         }
-        SetGameState(new PlayingState());
+        
         // Do not destroy this object, when we load a new scene.
         DontDestroyOnLoad(gameObject);
+    }
+    private void Start()
+    {
+        SetGameState(new MainMenuState());
     }
 
     public bool CheckGameState(string state)

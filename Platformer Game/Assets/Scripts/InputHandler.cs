@@ -47,6 +47,10 @@ public class InputHandler : MonoBehaviour {
             {
                 buttonESC.Execute();
             }
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                Debug.Log(DataManager.gameState);
+            }
         }
     }
     

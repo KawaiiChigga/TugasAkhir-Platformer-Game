@@ -69,3 +69,22 @@ public class GameOverState : GameState
 
     }
 }
+
+public class MainMenuState : GameState
+{
+
+    public override void Tick()
+    {
+
+    }
+
+    public override void OnStateEnter()
+    {
+
+    }
+
+    public override void OnStateExit()
+    {
+
+    }
+}

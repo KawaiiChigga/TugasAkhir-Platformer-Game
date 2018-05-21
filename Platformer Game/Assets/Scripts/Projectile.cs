@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     public float lifetime;
     public float speed = 20f;
     public float damage = 10f;
-    public bool penetrating=false;
+    public bool penetrating = false;
 
     void Start()
     {
@@ -51,7 +51,7 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Collider2D col = collision.collider;
-        if (col.tag!= "Rider")
+        if (col.tag != "Rider")
         {
             Destroy(gameObject);
         }

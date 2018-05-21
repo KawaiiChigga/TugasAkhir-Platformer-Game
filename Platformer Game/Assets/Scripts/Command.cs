@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public abstract class Command  {
+public abstract class Command
+{
 
     public abstract void Execute();
     public abstract void Execute(Robot robot);
@@ -19,7 +20,7 @@ public class DoNothing : Command
 
     public override void Execute(Robot robot)
     {
-        
+
     }
 }
 
@@ -32,7 +33,7 @@ public class FireWeapon : Command
 
     public override void Execute()
     {
-        
+
     }
 }
 
@@ -133,8 +134,8 @@ public class LoadScene : Command
 
     public void Execute(string level)
     {
-        SceneManager.LoadSceneAsync(level);
         DataManager.instance.SetGameState(new PlayingState());
+        SceneManager.LoadSceneAsync(level);
     }
 }
 
@@ -149,4 +150,19 @@ public class ExitCommand : Command
     {
 
     }
+}
+
+public class LoadMainMenu : Command
+{
+    public override void Execute()
+    {
+        SceneManager.LoadSceneAsync("mainmenu");
+        DataManager.instance.SetGameState(new MainMenuState());
+    }
+
+    public override void Execute(Robot robot)
+    {
+
+    }
+
 }

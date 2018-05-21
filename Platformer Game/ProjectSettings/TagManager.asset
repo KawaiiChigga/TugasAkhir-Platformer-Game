@@ -9,6 +9,7 @@ TagManager:
   - Destroyable
   - Rider
   - ShowOnPause
+  - ShowOnGameOver
   layers:
   - Default
   - TransparentFX

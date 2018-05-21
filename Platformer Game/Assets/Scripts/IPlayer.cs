@@ -42,7 +42,7 @@ public class IPlayer : Robot
             {
                 SetState(new DashingState(this));
             }
-            
+
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -86,7 +86,7 @@ public class IPlayer : Robot
     {
         currentState.Tick();
         float h = GetMovementInput();
-        horizVel = Mathf.Clamp(moveDampening * horizVel + (moveSpeed / rb2d.mass) * h / Time.timeScale  * Time.deltaTime, -maxSpeed, maxSpeed);
+        horizVel = Mathf.Clamp(moveDampening * horizVel + (moveSpeed / rb2d.mass) * h / Time.timeScale * Time.deltaTime, -maxSpeed, maxSpeed);
         Vector3 vel = rb2d.velocity;
         vel.x = horizVel;
         anim.SetFloat("Speed", Mathf.Abs(horizVel));
@@ -119,5 +119,5 @@ public class IPlayer : Robot
         UIManager.SendMessage("UpdateHealth", currentHealth);
     }
 
-    
+
 }

@@ -60,15 +60,15 @@ public abstract class Robot : MonoBehaviour
 
     public void Dash()
     {
-            if (!facingRight)
-            {
-                rb2d.AddForce(new Vector2(-500, 0));
-            }
-            else
-            {
-                rb2d.AddForce(new Vector2(500, 0));
-            }
-            dashRecharged = false;
+        if (!facingRight)
+        {
+            rb2d.AddForce(new Vector2(-500, 0));
+        }
+        else
+        {
+            rb2d.AddForce(new Vector2(500, 0));
+        }
+        dashRecharged = false;
     }
 
     public void SetState(State state)
