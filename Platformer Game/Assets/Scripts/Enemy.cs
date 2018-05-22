@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IEnemy : Robot
+public class Enemy : Robot
 {
     private Transform fallCheck;
     public bool findEdge = true;
@@ -12,9 +12,9 @@ public class IEnemy : Robot
     private float startingY;
     void Start()
     {
-        anim = GetComponent<Animator>();
-        rb2d = GetComponent<Rigidbody2D>();
-        groundCheck = gameObject.transform.Find("groundCheck").GetComponent<Transform>();
+        Anim = GetComponent<Animator>();
+        Rb2d = GetComponent<Rigidbody2D>();
+        GroundCheck = gameObject.transform.Find("groundCheck").GetComponent<Transform>();
         fallCheck = gameObject.transform.Find("fallCheck").GetComponent<Transform>();
         SetState(new GroundedState(this));
         if (!isFlyer)
@@ -33,8 +33,8 @@ public class IEnemy : Robot
         if (!isFlyer)
         {
             findEdge = Physics2D.Linecast(transform.position, fallCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-            grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-            if (grounded && currentState.GetType().Name != "GroundedState")
+            Grounded = Physics2D.Linecast(transform.position, GroundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+            if (Grounded && CurrentState.GetType().Name != "GroundedState")
             {
                 SetState(new GroundedState(this));
             }
@@ -48,19 +48,14 @@ public class IEnemy : Robot
     private void FixedUpdate()
     {
         Shoot();
-        currentState.Tick();
+        CurrentState.Tick();
         currentAIState.Tick();
-        if (jump)
-        {
-            Jump();
-            jump = false;
-        }
     }
 
     public void Patrol()
     {
         float h;
-        if (facingRight)
+        if (FacingRight)
         {
             h = 1f;
         }
@@ -68,11 +63,11 @@ public class IEnemy : Robot
         {
             h = -1f;
         }
-        horizVel = Mathf.Clamp(moveDampening * horizVel + (moveSpeed / rb2d.mass) * h / Time.timeScale * Time.deltaTime, -maxSpeed, maxSpeed);
-        Vector3 vel = rb2d.velocity;
-        vel.x = horizVel;
-        anim.SetFloat("Speed", Mathf.Abs(horizVel));
-        rb2d.velocity = vel;
+        HorizVel = Mathf.Clamp(MoveDampening * HorizVel + (MoveSpeed / Rb2d.mass) * h / Time.timeScale * Time.deltaTime, -MaxSpeed, MaxSpeed);
+        Vector3 vel = Rb2d.velocity;
+        vel.x = HorizVel;
+        Anim.SetFloat("Speed", Mathf.Abs(HorizVel));
+        Rb2d.velocity = vel;
         DetectEdge();
     }
 
@@ -83,17 +78,17 @@ public class IEnemy : Robot
 
     public void DetectEdge()
     {
-        if (!findEdge && grounded)
+        if (!findEdge && Grounded)
         {
-            ChangeDirection();
+            FlipObject();
         }
     }
 
     public override void Kill()
     {
         GetComponent<Prototype>().ReturnToPool();
-        currentHealth = startingHealth;
-        facingRight = true;
+        CurrentHealth = StartingHealth;
+        FacingRight = true;
     }
 
     public void SetAIState(AIState aistate)

@@ -2,39 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Robot : MonoBehaviour
+public abstract class Robot : MonoBehaviour //Alasan abstract class//
 {
+    //Getter Setter//
+    [SerializeField] private bool facingRight;
+    [HideInInspector] private bool jump1 = false;
+    [HideInInspector] private bool dash1 = false;
+    [SerializeField] private float moveSpeed = 45f;
+    [SerializeField] private float maxSpeed = 8f;
+    [SerializeField]  private float jumpForce = 750f;
+    private Transform groundCheck;
+    private float horizVel = 0f;
+    private static Vector3 mirrorX = new Vector3(-1, 1, 1);
+    private float moveDampening = 0.2f;
+    [SerializeField]  private int startingHealth = 3;
+    [SerializeField] private int currentHealth = 3;
+    private bool grounded = false;
+    private Animator anim;
+    private Rigidbody2D rb2d;
+    private State currentState;
+    private bool dashRecharged;
 
-    public bool facingRight = true;
-    [HideInInspector] public bool jump = false;
-    [HideInInspector] public bool dash = false;
-    public float moveSpeed = 45f;
-    public float maxSpeed = 8f;
-    public float jumpForce = 750f;
-    protected Transform groundCheck;
-    protected float horizVel = 0f;
-    protected static Vector3 mirrorX = new Vector3(-1, 1, 1);
-    public float moveDampening = 0.2f;
-    public int startingHealth = 3;
-    public int currentHealth = 3;
-    public bool grounded = false;
-    protected Animator anim;
-    protected Rigidbody2D rb2d;
-    protected State currentState;
-    public bool startfacingRight;
-    protected bool dashRecharged;
 
     // Use this for initialization
     void Start()
     {
-        if (startfacingRight == false)
-        {
-            ChangeDirection();
-            facingRight = false;
-        }
-        anim = GetComponent<Animator>();
-        rb2d = GetComponent<Rigidbody2D>();
-        groundCheck = gameObject.transform.Find("groundCheck").GetComponent<Transform>();
+        Anim = GetComponent<Animator>();
+        Rb2d = GetComponent<Rigidbody2D>();
+        GroundCheck = gameObject.transform.Find("groundCheck").GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -52,7 +47,7 @@ public abstract class Robot : MonoBehaviour
     {
         if (CheckState("GroundedState"))
         {
-            rb2d.AddForce(new Vector2(0, jumpForce / Time.timeScale));
+            Rb2d.AddForce(new Vector2(0, JumpForce / Time.timeScale));
         }
     }
 
@@ -60,37 +55,37 @@ public abstract class Robot : MonoBehaviour
 
     public void Dash()
     {
-        if (!facingRight)
+        if (!FacingRight)
         {
-            rb2d.AddForce(new Vector2(-500, 0));
+            Rb2d.AddForce(new Vector2(-500, 0));
         }
         else
         {
-            rb2d.AddForce(new Vector2(500, 0));
+            Rb2d.AddForce(new Vector2(500, 0));
         }
-        dashRecharged = false;
+        DashRecharged = false;
     }
 
     public void SetState(State state)
     {
-        if (currentState != null)
-            currentState.OnStateExit();
+        if (CurrentState != null)
+            CurrentState.OnStateExit();
 
-        currentState = state;
+        CurrentState = state;
         gameObject.name = "Robot - " + state.GetType().Name;
 
-        if (currentState != null)
-            currentState.OnStateEnter();
+        if (CurrentState != null)
+            CurrentState.OnStateEnter();
     }
 
     public bool CheckState(string state)
     {
-        return currentState.GetType().Name == state;
+        return CurrentState.GetType().Name == state; //Hindari string//
     }
 
     public void TriggerAnimation(string animation)
     {
-        anim.SetTrigger(animation);
+        Anim.SetTrigger(animation);
     }
 
     public abstract void HealthChange();
@@ -103,16 +98,276 @@ public abstract class Robot : MonoBehaviour
         }
     }
 
-    public void ChangeDirection()
+    public void FlipObject()
     {
-        transform.localScale = Vector3.Scale(transform.localScale, mirrorX);
-        facingRight = !facingRight;
+        transform.localScale = Vector3.Scale(transform.localScale, MirrorX);
+        FacingRight = !FacingRight;
     }
 
     public void RechargeDash()
     {
-        dashRecharged = true;
+        DashRecharged = true;
     }
 
+    // GETTER AND SETTER//
 
+    public float MoveSpeed
+    {
+        get
+        {
+            return MoveSpeed1;
+        }
+
+        set
+        {
+            MoveSpeed1 = value;
+        }
+    }
+
+    protected bool DashRecharged
+    {
+        get
+        {
+            return dashRecharged;
+        }
+
+        set
+        {
+            dashRecharged = value;
+        }
+    }
+
+    protected State CurrentState
+    {
+        get
+        {
+            return currentState;
+        }
+
+        set
+        {
+            currentState = value;
+        }
+    }
+
+    public bool FacingRight
+    {
+        get
+        {
+            return FacingRight1;
+        }
+
+        set
+        {
+            FacingRight1 = value;
+        }
+    }
+
+    public int CurrentHealth
+    {
+        get
+        {
+            return CurrentHealth1;
+        }
+
+        set
+        {
+            CurrentHealth1 = value;
+        }
+    }
+
+    public bool FacingRight1
+    {
+        get
+        {
+            return facingRight;
+        }
+
+        set
+        {
+            facingRight = value;
+        }
+    }
+
+    public bool Jump1
+    {
+        get
+        {
+            return jump1;
+        }
+
+        set
+        {
+            jump1 = value;
+        }
+    }
+
+    public bool Dash1
+    {
+        get
+        {
+            return dash1;
+        }
+
+        set
+        {
+            dash1 = value;
+        }
+    }
+
+    public float MoveSpeed1
+    {
+        get
+        {
+            return moveSpeed;
+        }
+
+        set
+        {
+            moveSpeed = value;
+        }
+    }
+
+    public float MaxSpeed
+    {
+        get
+        {
+            return maxSpeed;
+        }
+
+        set
+        {
+            maxSpeed = value;
+        }
+    }
+
+    public float JumpForce
+    {
+        get
+        {
+            return jumpForce;
+        }
+
+        set
+        {
+            jumpForce = value;
+        }
+    }
+
+    protected Transform GroundCheck
+    {
+        get
+        {
+            return groundCheck;
+        }
+
+        set
+        {
+            groundCheck = value;
+        }
+    }
+
+    protected float HorizVel
+    {
+        get
+        {
+            return horizVel;
+        }
+
+        set
+        {
+            horizVel = value;
+        }
+    }
+
+    protected static Vector3 MirrorX
+    {
+        get
+        {
+            return mirrorX;
+        }
+
+        set
+        {
+            mirrorX = value;
+        }
+    }
+
+    public float MoveDampening
+    {
+        get
+        {
+            return moveDampening;
+        }
+
+        set
+        {
+            moveDampening = value;
+        }
+    }
+
+    public int StartingHealth
+    {
+        get
+        {
+            return startingHealth;
+        }
+
+        set
+        {
+            startingHealth = value;
+        }
+    }
+
+    public int CurrentHealth1
+    {
+        get
+        {
+            return currentHealth;
+        }
+
+        set
+        {
+            currentHealth = value;
+        }
+    }
+
+    public bool Grounded
+    {
+        get
+        {
+            return grounded;
+        }
+
+        set
+        {
+            grounded = value;
+        }
+    }
+
+    protected Animator Anim
+    {
+        get
+        {
+            return anim;
+        }
+
+        set
+        {
+            anim = value;
+        }
+    }
+
+    protected Rigidbody2D Rb2d
+    {
+        get
+        {
+            return rb2d;
+        }
+
+        set
+        {
+            rb2d = value;
+        }
+    }
 }

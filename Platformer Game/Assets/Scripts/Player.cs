@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class IPlayer : Robot
+public class Player : Robot
 {
     private float dashTimer;
     public GameObject UIManager;
     // Use this for initialization
     void Awake()
     {
-        UIManager.SendMessage("UpdateHealth", currentHealth);
+        UIManager.SendMessage("UpdateHealth", CurrentHealth);
         SetState(new GroundedState(this));
     }
 
@@ -19,17 +19,17 @@ public class IPlayer : Robot
     {
         // Check if Player is touching a ground
 
-        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground")) || Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Projectile"));
+        Grounded = Physics2D.Linecast(transform.position, GroundCheck.position, 1 << LayerMask.NameToLayer("Ground")) || Physics2D.Linecast(transform.position, GroundCheck.position, 1 << LayerMask.NameToLayer("Projectile"));
 
         if (!CheckState("DashingState"))
         {
-            if (grounded && !CheckState("GroundedState"))
+            if (Grounded && !CheckState("GroundedState"))
             {
                 SetState(new GroundedState(this));
             }
             else
             {
-                if (!grounded && !CheckState("AirborneState"))
+                if (!Grounded && !CheckState("AirborneState"))
                 {
                     SetState(new AirborneState(this));
                 }
@@ -38,7 +38,7 @@ public class IPlayer : Robot
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            if (dashRecharged)
+            if (DashRecharged)
             {
                 SetState(new DashingState(this));
             }
@@ -61,7 +61,7 @@ public class IPlayer : Robot
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            currentHealth -= 1;
+            CurrentHealth -= 1;
             HealthChange();
         }
         /* Example of no command pattern
@@ -84,19 +84,19 @@ public class IPlayer : Robot
 
     private void FixedUpdate() //Ga kepengaruh frame per second
     {
-        currentState.Tick();
+        CurrentState.Tick();
         float h = GetMovementInput();
-        horizVel = Mathf.Clamp(moveDampening * horizVel + (moveSpeed / rb2d.mass) * h / Time.timeScale * Time.deltaTime, -maxSpeed, maxSpeed);
-        Vector3 vel = rb2d.velocity;
-        vel.x = horizVel;
-        anim.SetFloat("Speed", Mathf.Abs(horizVel));
+        HorizVel = Mathf.Clamp(MoveDampening * HorizVel + (MoveSpeed / Rb2d.mass) * h / Time.timeScale * Time.deltaTime, -MaxSpeed, MaxSpeed);
+        Vector3 vel = Rb2d.velocity;
+        vel.x = HorizVel;
+        Anim.SetFloat("Speed", Mathf.Abs(HorizVel));
         if (!CheckState("DashingState"))
         {
-            rb2d.velocity = vel;
+            Rb2d.velocity = vel;
         }
-        if ((h < -0.01f && facingRight) || (h > 0.01f && !facingRight))
+        if ((h < -0.01f && FacingRight) || (h > 0.01f && !FacingRight))
         {
-            ChangeDirection();
+            FlipObject();
         }
 
     }
@@ -116,7 +116,7 @@ public class IPlayer : Robot
     public override void HealthChange()
     {
         SetState(new DamagedState(this));
-        UIManager.SendMessage("UpdateHealth", currentHealth);
+        UIManager.SendMessage("UpdateHealth", CurrentHealth);
     }
 
 

@@ -5,7 +5,9 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     public int damage;
-    public Spawner spawner;
+    public Spawner [] spawners;
+    public bool isTrigger;
+    private bool activated = false;
 
     // Use this for initialization
     void Start()
@@ -16,7 +18,10 @@ public class Platform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(activated == true)
+        {
+            TriggerSpawn();
+        }
     }
 
 
@@ -24,6 +29,32 @@ public class Platform : MonoBehaviour
     {
         Collider2D col = collision.collider;
         col.SendMessageUpwards("Damaged", damage);
+        if (isTrigger)
+        {
+            if(activated == false)
+            {
+                activated = true;
+            }
+            else
+            {
+                activated = false;
+            }
+        }
     }
 
+    private void TriggerSpawn()
+    {
+        foreach (Spawner spawner in spawners)
+        {
+            if (spawner.Count >= spawner.Spawntime)
+            {
+                spawner.Spawn();
+                spawner.Count = 0;
+            }
+            else
+            {
+                spawner.Count += Time.deltaTime;
+            }
+        }
+    }
 }

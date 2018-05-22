@@ -19,9 +19,9 @@ public class DamageDetection : MonoBehaviour {
         Debug.Log(gameObject.name + " receives " + damage + " damage");
         if(gameObject.tag=="Rider")
         {
-            gameObject.GetComponentInParent<Robot>().currentHealth -= (int)damage;
+            gameObject.GetComponentInParent<Robot>().CurrentHealth -= (int)damage;
             gameObject.GetComponentInParent<Robot>().HealthChange();
-            if (gameObject.GetComponentInParent<Robot>().currentHealth <= 0)
+            if (gameObject.GetComponentInParent<Robot>().CurrentHealth <= 0)
             {
                 gameObject.GetComponentInParent<Robot>().Kill();
             }

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public abstract class AIState
 {
-    protected IEnemy enemy;
+    protected Enemy enemy;
 
     public abstract void Tick();
 
     public virtual void OnStateEnter() { }
     public virtual void OnStateExit() { }
 
-    public AIState(IEnemy enemy)
+    public AIState(Enemy enemy)
     {
         this.enemy = enemy;
     }
@@ -21,7 +21,7 @@ public class PatrollingState : AIState
 {
     private Vector3 destination;
 
-    public PatrollingState(IEnemy enemy) : base(enemy)
+    public PatrollingState(Enemy enemy) : base(enemy)
     {
 
     }
@@ -46,7 +46,7 @@ public class ShootingState : AIState
 {
     private Vector3 destination;
 
-    public ShootingState(IEnemy enemy) : base(enemy)
+    public ShootingState(Enemy enemy) : base(enemy)
     {
 
     }
@@ -70,7 +70,7 @@ public class ShootingState : AIState
 public class HoverState : AIState
 {
 
-    public HoverState(IEnemy enemy) : base(enemy)
+    public HoverState(Enemy enemy) : base(enemy)
     {
         
     }

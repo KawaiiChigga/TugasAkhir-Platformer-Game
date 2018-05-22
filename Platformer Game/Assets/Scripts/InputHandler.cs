@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputHandler : MonoBehaviour {
 
-    public IPlayer player;
+    public Player player;
     private Command buttonZ, buttonX, buttonLeftMouse, buttonESC;
 
     // Use this for initialization
