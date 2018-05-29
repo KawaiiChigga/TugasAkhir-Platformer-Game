@@ -21,15 +21,15 @@ public class Player : Robot
 
         Grounded = Physics2D.Linecast(transform.position, GroundCheck.position, 1 << LayerMask.NameToLayer("Ground")) || Physics2D.Linecast(transform.position, GroundCheck.position, 1 << LayerMask.NameToLayer("Projectile"));
 
-        if (!CheckState("DashingState"))
+        if (!CheckState(3))
         {
-            if (Grounded && !CheckState("GroundedState"))
+            if (Grounded && !CheckState(1))
             {
                 SetState(new GroundedState(this));
             }
             else
             {
-                if (!Grounded && !CheckState("AirborneState"))
+                if (!Grounded && !CheckState(2))
                 {
                     SetState(new AirborneState(this));
                 }
@@ -50,20 +50,6 @@ public class Player : Robot
             Jump();
         }
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            SceneManager.LoadSceneAsync(0);
-        }
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            SceneManager.LoadSceneAsync(1);
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            CurrentHealth -= 1;
-            HealthChange();
-        }
         /* Example of no command pattern
         if (Input.GetKeyDown(KeyCode.Z))
         {
@@ -90,7 +76,7 @@ public class Player : Robot
         Vector3 vel = Rb2d.velocity;
         vel.x = HorizVel;
         Anim.SetFloat("Speed", Mathf.Abs(HorizVel));
-        if (!CheckState("DashingState"))
+        if (!CheckState(3))
         {
             Rb2d.velocity = vel;
         }
@@ -108,7 +94,6 @@ public class Player : Robot
 
     public override void Kill()
     {
-        Debug.Log("YOU DIED");
         DataManager.instance.SetGameState(new GameOverState());
         Destroy(gameObject);
     }
@@ -118,6 +103,4 @@ public class Player : Robot
         SetState(new DamagedState(this));
         UIManager.SendMessage("UpdateHealth", CurrentHealth);
     }
-
-
 }

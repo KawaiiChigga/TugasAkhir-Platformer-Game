@@ -23,7 +23,6 @@ public abstract class Robot : MonoBehaviour //Alasan abstract class//
     private State currentState;
     private bool dashRecharged;
 
-
     // Use this for initialization
     void Start()
     {
@@ -45,7 +44,7 @@ public abstract class Robot : MonoBehaviour //Alasan abstract class//
 
     public void Jump()
     {
-        if (CheckState("GroundedState"))
+        if (CheckState(1))
         {
             Rb2d.AddForce(new Vector2(0, JumpForce / Time.timeScale));
         }
@@ -78,9 +77,9 @@ public abstract class Robot : MonoBehaviour //Alasan abstract class//
             CurrentState.OnStateEnter();
     }
 
-    public bool CheckState(string state)
+    public bool CheckState(int state)
     {
-        return CurrentState.GetType().Name == state; //Hindari string//
+        return CurrentState.StateId == state;
     }
 
     public void TriggerAnimation(string animation)
@@ -92,7 +91,7 @@ public abstract class Robot : MonoBehaviour //Alasan abstract class//
 
     public void Shoot()
     {
-        if (!CheckState("DashingState")) //No firing when dashing//
+        if (!CheckState(3)) //No firing when dashing//
         {
             GetComponentInChildren<Weapon>().ValidFire();
         }

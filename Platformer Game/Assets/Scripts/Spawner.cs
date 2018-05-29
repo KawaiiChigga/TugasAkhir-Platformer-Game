@@ -9,7 +9,7 @@ public class Spawner : MonoBehaviour
     public Prototype enemyPrototype;
     public Enemy[] enemy;
     private float spawntime = 5;
-    private float count = 0;
+    private float timer;
     private int currentEnemyCount = 0;
     public bool spawnAtRuntime = false;
 
@@ -26,16 +26,30 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public float Count
+
+    public float Timer
     {
         get
         {
-            return count;
+            return Timer1;
         }
 
         set
         {
-            count = value;
+            Timer1 = value;
+        }
+    }
+
+    public float Timer1
+    {
+        get
+        {
+            return timer;
+        }
+
+        set
+        {
+            timer = value;
         }
     }
 
@@ -47,6 +61,7 @@ public class Spawner : MonoBehaviour
         {
             Spawn();
         }
+        timer = spawntime;
     }
 
     // Update is called once per frame

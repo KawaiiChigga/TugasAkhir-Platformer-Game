@@ -45,6 +45,10 @@ public class Projectile : MonoBehaviour
         // Otherwise if the player manages to shoot himself...
         else
         {
+            if(col.tag == "Rider" && gameObject.tag != "Platform")
+            {
+                col.SendMessageUpwards("Damaged", damage);
+            }
             Destroy(gameObject);
         }
     }
@@ -54,7 +58,7 @@ public class Projectile : MonoBehaviour
         if (col.tag != "Rider")
         {
             Destroy(gameObject);
+            Debug.Log("1");
         }
-
     }
 }

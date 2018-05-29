@@ -100,9 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 1176309065038240, guid: bcbcae26c88670843a966784fe45fe9c, type: 2}
-  lifetime: 0.25
-  speed: 50
-  damage: 1
+  lifetime: 4
+  speed: 5
+  damage: 20
   penetrating: 0
 --- !u!212 &212468002372675120
 SpriteRenderer:

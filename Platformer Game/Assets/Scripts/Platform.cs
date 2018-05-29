@@ -7,6 +7,7 @@ public class Platform : MonoBehaviour
     public int damage;
     public Spawner [] spawners;
     public bool isTrigger;
+    public bool isOneTime;
     private bool activated = false;
 
     // Use this for initialization
@@ -21,6 +22,11 @@ public class Platform : MonoBehaviour
         if(activated == true)
         {
             TriggerSpawn();
+            if (isOneTime)
+            {
+                activated = false;
+                isTrigger = false;
+            }
         }
     }
 
@@ -28,7 +34,10 @@ public class Platform : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Collider2D col = collision.collider;
-        col.SendMessageUpwards("Damaged", damage);
+        if (damage > 0)
+        {
+            col.SendMessageUpwards("Damaged", damage);
+        }
         if (isTrigger)
         {
             if(activated == false)
@@ -46,14 +55,14 @@ public class Platform : MonoBehaviour
     {
         foreach (Spawner spawner in spawners)
         {
-            if (spawner.Count >= spawner.Spawntime)
+            if (spawner.Timer >= spawner.Spawntime)
             {
                 spawner.Spawn();
-                spawner.Count = 0;
+                spawner.Timer = 0;
             }
             else
             {
-                spawner.Count += Time.deltaTime;
+                spawner.Timer += Time.deltaTime;
             }
         }
     }

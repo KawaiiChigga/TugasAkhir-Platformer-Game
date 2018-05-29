@@ -7,7 +7,20 @@ public abstract class AIState
     protected Enemy enemy;
 
     public abstract void Tick();
+    private static int stateId;
 
+    public int StateId
+    {
+        get
+        {
+            return stateId;
+        }
+
+        set
+        {
+            stateId = value;
+        }
+    }
     public virtual void OnStateEnter() { }
     public virtual void OnStateExit() { }
 
@@ -33,7 +46,7 @@ public class PatrollingState : AIState
 
     public override void OnStateEnter()
     {
-
+        StateId = 1;
     }
 
     public override void OnStateExit()
@@ -58,7 +71,7 @@ public class ShootingState : AIState
 
     public override void OnStateEnter()
     {
-
+        StateId = 2;
     }
 
     public override void OnStateExit()

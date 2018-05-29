@@ -2,13 +2,7 @@
 using System.Collections.Generic;
 using System;
 
-/// <summary>
-/// Convenience way to create objects in the hierarchy that are a bit like prefabs, except that they
-/// aren't. They exist in the scene, immediately deactivate themselves, then provide an easy way to
-/// instantiate a copy in the same place in the hierarchy.
-/// If you call ReturnToPool() once you're done with the instance, then it's returned
-/// to the original prototype to be reused if necessary instead of creating a brand new GameObject.
-/// </summary>
+
 public class Prototype : MonoBehaviour
 {
 
@@ -94,7 +88,7 @@ public class Prototype : MonoBehaviour
     {
         if (isOriginalPrototype)
         {
-            Debug.Log("Can't return to pool because the original prototype doesn't exist. Is this prototype the original?");
+            Debug.Log("This prototype the original, can't return");
             Destroy(gameObject);
             return;
         }
@@ -113,7 +107,7 @@ public class Prototype : MonoBehaviour
     void AddToPool(Prototype instancePrototype)
     {
         if (!isOriginalPrototype)
-            Debug.LogError("Adding " + instancePrototype.name + " to prototype pool of " + this.name + " but this appears to be an instance itself?");
+            Debug.LogError("Can't add " + instancePrototype.name + " to prototype pool of " + this.name );
 
         instancePrototype.gameObject.SetActive(false);
 

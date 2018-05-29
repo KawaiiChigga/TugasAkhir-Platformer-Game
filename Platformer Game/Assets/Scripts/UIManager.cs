@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < healths.Length; i++)
         {
-            if (i < health)
+            if (i < health/10)
             {
                 healths[i].gameObject.SetActive(true);
             }

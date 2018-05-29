@@ -9,10 +9,6 @@ public class DataManager : MonoBehaviour
     public static GameState gameState;
     /// <summary>The player's current score.</summary>
     public int score;
-    /// <summary>The player's remaining health.</summary>
-    public int health;
-    /// <summary>The player's remaining lives.</summary>
-    public int lives;
 
     // Use this for initialization
     void Awake()

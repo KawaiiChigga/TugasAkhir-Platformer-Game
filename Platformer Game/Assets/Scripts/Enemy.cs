@@ -10,13 +10,19 @@ public class Enemy : Robot
     public bool isFlyer = false;
     public AnimationCurve hoverCurve;
     private float startingY;
-    void Start()
+
+    private void Awake()
     {
         Anim = GetComponent<Animator>();
         Rb2d = GetComponent<Rigidbody2D>();
         GroundCheck = gameObject.transform.Find("groundCheck").GetComponent<Transform>();
         fallCheck = gameObject.transform.Find("fallCheck").GetComponent<Transform>();
         SetState(new GroundedState(this));
+    }
+
+    void Start()
+    {
+       
         if (!isFlyer)
         {
             SetAIState(new PatrollingState(this));
@@ -78,7 +84,7 @@ public class Enemy : Robot
 
     public void DetectEdge()
     {
-        if (!findEdge && Grounded)
+        if (!findEdge && Grounded)  
         {
             FlipObject();
         }
@@ -88,7 +94,7 @@ public class Enemy : Robot
     {
         GetComponent<Prototype>().ReturnToPool();
         CurrentHealth = StartingHealth;
-        FacingRight = true;
+        GetComponentInChildren<Weapon>().ResetCooldown();
     }
 
     public void SetAIState(AIState aistate)
@@ -103,9 +109,9 @@ public class Enemy : Robot
             currentAIState.OnStateEnter();
     }
 
-    public bool CheckAIState(string aistate)
+    public bool CheckAIState(int aistate)
     {
-        return currentAIState.GetType().Name == aistate;
+        return currentAIState.StateId == aistate;
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -120,5 +126,6 @@ public class Enemy : Robot
     {
         
     }
+
 
 }
