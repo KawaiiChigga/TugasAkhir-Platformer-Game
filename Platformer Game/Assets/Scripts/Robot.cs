@@ -52,7 +52,9 @@ public abstract class Robot : MonoBehaviour //Alasan abstract class//
 
     abstract public void Kill();
 
-    public void Dash()
+    public abstract void Dash();
+
+    public void DashMovement()
     {
         if (!FacingRight)
         {
@@ -94,6 +96,7 @@ public abstract class Robot : MonoBehaviour //Alasan abstract class//
         if (!CheckState(3)) //No firing when dashing//
         {
             GetComponentInChildren<Weapon>().ValidFire();
+            //GetComponentInChildren<ProtoWeapon>().ValidFire();
         }
     }
 

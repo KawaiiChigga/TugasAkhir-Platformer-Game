@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputHandler : MonoBehaviour {
 
     public Player player;
-    private Command buttonZ, buttonX, buttonLeftMouse, buttonESC;
+    private Command buttonZ, buttonX, buttonLeftMouse, buttonESC, buttonSpace, buttonLeftShift;
 
     // Use this for initialization
     void Start () {
@@ -13,6 +13,8 @@ public class InputHandler : MonoBehaviour {
         buttonX = new NormalizeTime();
         buttonLeftMouse = new FireWeapon();
         buttonESC = new PauseGame();
+        buttonSpace = new JumpCommand();
+        buttonLeftShift = new DashCommand();
     }
 	
 	// Update is called once per frame
@@ -28,17 +30,25 @@ public class InputHandler : MonoBehaviour {
             {
                 buttonZ.Execute();
             }
-            else if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X))
             {
                 buttonX.Execute();
             }
-            else if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0))
             {
                 buttonLeftMouse.Execute(player);
             }
-            else if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 buttonESC.Execute();
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                buttonSpace.Execute(player);
+            }
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                buttonLeftShift.Execute(player);
             }
         }
         else
@@ -46,10 +56,6 @@ public class InputHandler : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 buttonESC.Execute();
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                Debug.Log(DataManager.gameState);
             }
         }
     }

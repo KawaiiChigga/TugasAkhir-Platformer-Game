@@ -9,11 +9,16 @@ public class UIManager : MonoBehaviour
     public Image[] healths;
     public GameObject[] pauseMenu;
     public GameObject[] overMenu;
+    public GameObject[] mainMenu;
+    public GameObject[] optionMenu;
     // Use this for initialization
     void Start()
     {
         pauseMenu = GameObject.FindGameObjectsWithTag("ShowOnPause");
         overMenu = GameObject.FindGameObjectsWithTag("ShowOnGameOver");
+        mainMenu = GameObject.FindGameObjectsWithTag("ShowOnMainMenu");
+        optionMenu = GameObject.FindGameObjectsWithTag("ShowOnOption");
+        hideOption();
     }
 
     void Update()
@@ -52,6 +57,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /*
+     public void ButtonLevelOne(){
+        SceneManager.LoadScene("LevelOne");   
+     }
+         */
+
     public void LoadLevel(string level)
     {
         new LoadScene().Execute(level);
@@ -75,6 +86,18 @@ public class UIManager : MonoBehaviour
     public void Quit()
     {
         new ExitCommand().Execute();
+    }
+
+    public void ConfirmOption()
+    {
+        hideOption();
+        ShowMain();
+    }
+
+    public void Option()
+    {
+        hideMain();
+        showOption();
     }
 
     public void showPaused()
@@ -107,6 +130,43 @@ public class UIManager : MonoBehaviour
         {
             g.SetActive(false);
         }
+    }
+
+    public void ShowMain()
+    {
+        foreach (GameObject g in mainMenu)
+        {
+            g.SetActive(true);
+        }
+    }
+
+    public void hideMain()
+    {
+        foreach (GameObject g in mainMenu)
+        {
+            g.SetActive(false);
+        }
+    }
+
+    public void showOption()
+    {
+        foreach (GameObject g in optionMenu)
+        {
+            g.SetActive(true);
+        }
+    }
+
+    public void hideOption()
+    {
+        foreach (GameObject g in optionMenu)
+        {
+            g.SetActive(false);
+        }
+    }
+
+    public void changeVolume()
+    {
+        AudioListener.volume = GameObject.Find("VolumeSlider").GetComponent<Slider>().value;
     }
 
 }

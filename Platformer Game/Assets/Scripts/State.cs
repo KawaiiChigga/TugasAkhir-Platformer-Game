@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class State
 {
     protected Robot robot;
-    private static int stateId;
+    private int stateId;
 
     public int StateId
     {
@@ -83,7 +83,6 @@ public class AirborneState : State
 
 public class DashingState : State
 {
-    private Vector3 destination;
     private float timer = 0f;
     public DashingState(Robot robot) : base(robot)
     {
@@ -94,11 +93,11 @@ public class DashingState : State
     {
         if (timer < 0.5f)
         {
-            robot.Dash();
+            robot.DashMovement();
             timer += Time.deltaTime;
         }
         else
-        {
+        {   
             robot.SetState(new AirborneState(robot));
         }
     }

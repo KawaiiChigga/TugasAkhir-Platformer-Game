@@ -90,6 +90,11 @@ public class Enemy : Robot
         }
     }
 
+    public override void Dash()
+    {
+        
+    }
+
     public override void Kill()
     {
         GetComponent<Prototype>().ReturnToPool();

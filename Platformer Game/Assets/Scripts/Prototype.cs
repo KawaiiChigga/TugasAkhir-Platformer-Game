@@ -12,7 +12,7 @@ public class Prototype : MonoBehaviour
     {
         get
         {
-            return _originalPrototype == null;
+            return originalProto == null;
         }
     }
 
@@ -20,7 +20,7 @@ public class Prototype : MonoBehaviour
     {
         get
         {
-            return _originalPrototype;
+            return originalProto;
         }
     }
 
@@ -32,8 +32,8 @@ public class Prototype : MonoBehaviour
 
     void OnDestroy()
     {
-        if (_instancePool != null)
-            foreach (var inst in _instancePool)
+        if (instancePool != null)
+            foreach (var inst in instancePool)
                 Destroy(inst);
     }
 
@@ -41,21 +41,21 @@ public class Prototype : MonoBehaviour
     {
         Prototype instance = null;
 
-        // Re-use instance from pool
-        if (_instancePool != null && _instancePool.Count > 0)
+        // Re-use instance
+        if (instancePool != null && instancePool.Count > 0)
         {
-            var instanceIdx = _instancePool.Count - 1;
-            instance = _instancePool[instanceIdx];
-            _instancePool.RemoveAt(instanceIdx);
+            var instanceIdx = instancePool.Count - 1;
+            instance = instancePool[instanceIdx];
+            instancePool.RemoveAt(instanceIdx);
             instance.transform.localPosition = transform.localPosition;
             instance.transform.localRotation = transform.localRotation;
             instance.transform.localScale = transform.localScale;
-            instance.transform.GetChild(0).localPosition = instance.transform.GetChild(0).localPosition;
-            instance.transform.GetChild(0).localRotation = instance.transform.GetChild(0).localRotation;
+            instance.transform.GetChild(0).localPosition = instance.transform.GetChild(0).position;
+            instance.transform.GetChild(0).localRotation = instance.transform.GetChild(0).rotation;
             instance.transform.GetChild(0).localScale = instance.transform.GetChild(0).localScale;
         }
 
-        // Instantiate fresh instance
+        // New instance
         else
         {
             instance = UnityEngine.Object.Instantiate(this);
@@ -76,7 +76,7 @@ public class Prototype : MonoBehaviour
             instance.transform.localRotation = transform.localRotation;
             instance.transform.localScale = transform.localScale;
 
-            instance._originalPrototype = this;
+            instance.originalProto = this;
         }
 
         instance.gameObject.SetActive(true);
@@ -93,7 +93,21 @@ public class Prototype : MonoBehaviour
             return;
         }
 
-        _originalPrototype.AddToPool(this);
+        originalProto.AddToPool(this);
+    }
+
+    void AddToPool(Prototype instancePrototype)
+    {
+        if (!isOriginalPrototype)
+            Debug.LogError("Can't add " + instancePrototype.name + " to prototype pool of " + this.name );
+
+        instancePrototype.gameObject.SetActive(false);
+
+        if (instancePool == null) instancePool = new List<Prototype>();
+        instancePool.Add(instancePrototype);
+
+        if (instancePrototype.OnReturnToPool != null)
+            instancePrototype.OnReturnToPool();
     }
 
     public T GetOriginal<T>()
@@ -104,21 +118,7 @@ public class Prototype : MonoBehaviour
             return originalPrototype.GetComponent<T>();
     }
 
-    void AddToPool(Prototype instancePrototype)
-    {
-        if (!isOriginalPrototype)
-            Debug.LogError("Can't add " + instancePrototype.name + " to prototype pool of " + this.name );
+    Prototype originalProto;
 
-        instancePrototype.gameObject.SetActive(false);
-
-        if (_instancePool == null) _instancePool = new List<Prototype>();
-        _instancePool.Add(instancePrototype);
-
-        if (instancePrototype.OnReturnToPool != null)
-            instancePrototype.OnReturnToPool();
-    }
-
-    Prototype _originalPrototype;
-
-    List<Prototype> _instancePool;
+    List<Prototype> instancePool;
 }

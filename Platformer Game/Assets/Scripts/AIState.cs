@@ -7,7 +7,7 @@ public abstract class AIState
     protected Enemy enemy;
 
     public abstract void Tick();
-    private static int stateId;
+    private int stateId;
 
     public int StateId
     {

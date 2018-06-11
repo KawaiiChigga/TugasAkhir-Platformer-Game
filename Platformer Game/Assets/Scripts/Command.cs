@@ -3,39 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public abstract class Command
-{
-
+public abstract class Command  {
     public abstract void Execute();
     public abstract void Execute(Robot robot);
-
 }
 
-public class DoNothing : Command
-{
-    public override void Execute()
-    {
+public class DoNothing : Command  {
+    public override void Execute()  {
 
     }
 
-    public override void Execute(Robot robot)
-    {
+    public override void Execute(Robot robot)  {
 
     }
 }
 
-public class FireWeapon : Command
-{
-    public override void Execute(Robot player)
-    {
+public class FireWeapon : Command  {
+    public override void Execute(Robot player)  {
         player.Shoot();
     }
 
+    public override void Execute()  {
+
+    }
+}
+
+public class JumpCommand : Command  {
+    public override void Execute(Robot player)  {
+        player.Jump();
+    }
+
+    public override void Execute()  {
+
+    }
+}
+public class DashCommand : Command
+{
+    public override void Execute(Robot player)
+    {
+        player.Dash();
+    }
+
     public override void Execute()
     {
 
     }
 }
+
 
 public class Slowtime : Command
 {
@@ -65,22 +79,17 @@ public class NormalizeTime : Command
     }
 }
 
-public class PauseGame : Command
-{
-    public override void Execute()
-    {
-        if (DataManager.instance.CheckGameState("PauseState"))
-        {
+public class PauseGame : Command   {
+    public override void Execute()   {
+        if (DataManager.instance.CheckGameState("PauseState"))   {
             DataManager.instance.SetGameState(new PlayingState());
         }
-        else
-        {
+        else  {
             DataManager.instance.SetGameState(new PauseState());
         }
     }
 
-    public override void Execute(Robot robot)
-    {
+    public override void Execute(Robot robot)  {
 
     }
 }
@@ -110,7 +119,7 @@ public class ReloadLevel : Command
     public override void Execute()
     {
         int scene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(scene, LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync(scene);
         DataManager.instance.SetGameState(new PlayingState());
     }
 
@@ -134,8 +143,8 @@ public class LoadScene : Command
 
     public void Execute(string level)
     {
-        DataManager.instance.SetGameState(new PlayingState());
         SceneManager.LoadSceneAsync(level);
+        DataManager.instance.SetGameState(new PlayingState());
     }
 }
 
@@ -153,6 +162,21 @@ public class ExitCommand : Command
 }
 
 public class LoadMainMenu : Command
+{
+    public override void Execute()
+    {
+        SceneManager.LoadSceneAsync("mainmenu");
+        DataManager.instance.SetGameState(new MainMenuState());
+    }
+
+    public override void Execute(Robot robot)
+    {
+
+    }
+
+}
+
+public class ConfirmOption : Command
 {
     public override void Execute()
     {

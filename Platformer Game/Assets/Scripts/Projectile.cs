@@ -3,25 +3,30 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour
 {
-    public GameObject explosion;        // Prefab of explosion effect.
+    public GameObject explosion;
     public float lifetime;
     public float speed = 20f;
     public float damage = 10f;
     public bool penetrating = false;
+    private float timer = 0;
 
     void Start()
     {
-        // Destroy the rocket after 2 seconds if it doesn't get destroyed before then.
-        Destroy(gameObject, lifetime);
+    }
+
+    private void FixedUpdate()
+    {
+        timer += Time.deltaTime;
+        if (timer > lifetime)
+        {
+            Destroy(gameObject);
+        }
     }
 
 
     void OnExplode()
     {
-        // Create a quaternion with a random rotation in the z-axis.
         Quaternion randomRotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
-
-        // Instantiate the explosion where the rocket is with the random rotation.
         Instantiate(explosion, transform.position, randomRotation);
     }
 
@@ -32,20 +37,17 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        // If it hits an enemy...
         if (col.tag == "Enemy" || col.tag == "Destroyable" || col.tag == "Player")
         {
-            // Destroy the rocket.
             if (!penetrating)
             {
                 Destroy(gameObject);
             }
             col.SendMessageUpwards("Damaged", damage);
         }
-        // Otherwise if the player manages to shoot himself...
         else
         {
-            if(col.tag == "Rider" && gameObject.tag != "Platform")
+            if (col.tag == "Rider" && gameObject.tag != "Platform")
             {
                 col.SendMessageUpwards("Damaged", damage);
             }

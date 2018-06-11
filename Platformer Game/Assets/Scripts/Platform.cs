@@ -22,6 +22,7 @@ public class Platform : MonoBehaviour
         if(activated == true)
         {
             TriggerSpawn();
+            
             if (isOneTime)
             {
                 activated = false;

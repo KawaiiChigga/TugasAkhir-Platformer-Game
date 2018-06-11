@@ -15,9 +15,7 @@ public class Player : Robot
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        // Check if Player is touching a ground
+    void Update()  {
 
         Grounded = Physics2D.Linecast(transform.position, GroundCheck.position, 1 << LayerMask.NameToLayer("Ground")) || Physics2D.Linecast(transform.position, GroundCheck.position, 1 << LayerMask.NameToLayer("Projectile"));
 
@@ -36,19 +34,6 @@ public class Player : Robot
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            if (DashRecharged)
-            {
-                SetState(new DashingState(this));
-            }
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump();
-        }
 
         /* Example of no command pattern
         if (Input.GetKeyDown(KeyCode.Z))
@@ -64,6 +49,16 @@ public class Player : Robot
         if (Input.GetButton("Fire1"))
         {
             GetComponentInChildren<WeaponManager>().ValidFire();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {   
+            Jump();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Dash();
         }
         */
     }
@@ -102,5 +97,12 @@ public class Player : Robot
     {
         SetState(new DamagedState(this));
         UIManager.SendMessage("UpdateHealth", CurrentHealth);
+    }
+    public override void Dash()
+    {
+        if (DashRecharged)
+        {
+            SetState(new DashingState(this));
+        }
     }
 }

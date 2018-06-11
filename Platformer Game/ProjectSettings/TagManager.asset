@@ -10,6 +10,8 @@ TagManager:
   - Rider
   - ShowOnPause
   - ShowOnGameOver
+  - ShowOnMainMenu
+  - ShowOnOption
   layers:
   - Default
   - TransparentFX
