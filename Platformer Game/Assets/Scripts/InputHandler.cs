@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputHandler : MonoBehaviour {
 
     public Player player;
-    private Command buttonZ, buttonX, buttonLeftMouse, buttonESC, buttonSpace, buttonLeftShift;
+    private Command buttonZ, buttonX, buttonLeftMouse, buttonESC, buttonSpace, buttonLeftShift, buttonB;
 
     // Use this for initialization
     void Start () {
@@ -15,6 +15,7 @@ public class InputHandler : MonoBehaviour {
         buttonESC = new PauseGame();
         buttonSpace = new JumpCommand();
         buttonLeftShift = new DashCommand();
+        buttonB = new ChangeWeapon();
     }
 	
 	// Update is called once per frame
@@ -49,6 +50,10 @@ public class InputHandler : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 buttonLeftShift.Execute(player);
+            }
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                buttonB.Execute(player);
             }
         }
         else

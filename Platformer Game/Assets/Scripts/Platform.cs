@@ -5,9 +5,10 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     public int damage;
-    public Spawner [] spawners;
+    public EnemySpawner [] spawners;
     public bool isTrigger;
     public bool isOneTime;
+    public bool isFinish = false;
     private bool activated = false;
 
     // Use this for initialization
@@ -34,11 +35,18 @@ public class Platform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Collider2D col = collision.collider;
-        if (damage > 0)
+        if (isFinish)
         {
-            col.SendMessageUpwards("Damaged", damage);
+            DataManager.instance.SetGameState(new FinishState());
         }
+        Collider2D col = collision.collider;
+        if(col.tag == "Rider")
+        {
+            if (damage > 0)
+            {
+                col.SendMessageUpwards("Damaged", damage);
+            }
+        }        
         if (isTrigger)
         {
             if(activated == false)
@@ -54,7 +62,7 @@ public class Platform : MonoBehaviour
 
     private void TriggerSpawn()
     {
-        foreach (Spawner spawner in spawners)
+        foreach (EnemySpawner spawner in spawners)
         {
             if (spawner.Timer >= spawner.Spawntime)
             {

@@ -88,3 +88,23 @@ public class MainMenuState : GameState
 
     }
 }
+
+public class FinishState : GameState
+{
+
+    public override void Tick()
+    {
+
+    }
+
+    public override void OnStateEnter()
+    {
+        originalTimeScale = Time.timeScale;
+        Time.timeScale = 0;
+    }
+
+    public override void OnStateExit()
+    {
+
+    }
+}

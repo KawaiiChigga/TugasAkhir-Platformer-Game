@@ -12,6 +12,7 @@ TagManager:
   - ShowOnGameOver
   - ShowOnMainMenu
   - ShowOnOption
+  - ShowOnFinish
   layers:
   - Default
   - TransparentFX

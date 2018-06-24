@@ -7,7 +7,7 @@ public class Prototype : MonoBehaviour
 {
 
     public event Action OnReturnToPool;
-
+    
     public bool isOriginalPrototype
     {
         get
@@ -39,8 +39,9 @@ public class Prototype : MonoBehaviour
 
     public T Instantiate<T>() where T : Component
     {
+        
         Prototype instance = null;
-
+        activeProto++;
         // Re-use instance
         if (instancePool != null && instancePool.Count > 0)
         {
@@ -53,8 +54,10 @@ public class Prototype : MonoBehaviour
             instance.transform.GetChild(0).localPosition = instance.transform.GetChild(0).position;
             instance.transform.GetChild(0).localRotation = instance.transform.GetChild(0).rotation;
             instance.transform.GetChild(0).localScale = instance.transform.GetChild(0).localScale;
+            Debug.Log("TOTAL : " +  (activeProto + instancePool.Count));
+            Debug.Log("INSTANCE : " + instancePool.Count);
+            ReducePool(instancePool.Count);
         }
-
         // New instance
         else
         {
@@ -78,21 +81,19 @@ public class Prototype : MonoBehaviour
 
             instance.originalProto = this;
         }
-
         instance.gameObject.SetActive(true);
-
-        return instance.GetComponent<T>();
+        return instance.GetComponent<T>();  
     }
 
     public void ReturnToPool()
-    {
+    { 
         if (isOriginalPrototype)
         {
             Debug.Log("This prototype the original, can't return");
             Destroy(gameObject);
             return;
         }
-
+        activeProto--;
         originalProto.AddToPool(this);
     }
 
@@ -118,7 +119,24 @@ public class Prototype : MonoBehaviour
             return originalPrototype.GetComponent<T>();
     }
 
+    void ReducePool(int inactiveProto)
+    {
+        if (inactiveProto + activeProto > 10 && activeProto < 10)
+            {
+            int x = inactiveProto + activeProto - 10;
+                for (int i = 0; i < x; i++)
+                {
+                    Debug.Log("REMOVING "+ i);
+                    Destroy(instancePool[i].gameObject);
+                }
+                for (int i = 0; i < x; i++)
+                {
+                    instancePool.RemoveAt(0);
+                }
+        }
+            
+    }
     Prototype originalProto;
-
+    static int activeProto = 0;
     List<Prototype> instancePool;
 }

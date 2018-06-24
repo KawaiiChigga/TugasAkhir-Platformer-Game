@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     public GameObject[] overMenu;
     public GameObject[] mainMenu;
     public GameObject[] optionMenu;
+    public GameObject[] finishMenu;
+    public Text scoreText;
     // Use this for initialization
     void Start()
     {
@@ -18,6 +20,7 @@ public class UIManager : MonoBehaviour
         overMenu = GameObject.FindGameObjectsWithTag("ShowOnGameOver");
         mainMenu = GameObject.FindGameObjectsWithTag("ShowOnMainMenu");
         optionMenu = GameObject.FindGameObjectsWithTag("ShowOnOption");
+        finishMenu = GameObject.FindGameObjectsWithTag("ShowOnFinish");
         hideOption();
     }
 
@@ -26,20 +29,39 @@ public class UIManager : MonoBehaviour
         if (DataManager.instance.CheckGameState("PauseState"))
         {
             showPaused();
+            hideFinished();
         }
         else
         {
             hidePaused();
             if (DataManager.instance.CheckGameState("GameOverState"))
             {
+                hideFinished();
                 showOver();
             }
             else
             {
                 hideOver();
+                if (DataManager.instance.CheckGameState("PlayingState"))
+                {
+                    UpdateScore();
+                    hideFinished();
+                }
+                else
+                {
+                    if (DataManager.instance.CheckGameState("FinishState"))
+                    {
+                        showFinished();
+                    }
+                    else
+                    {
+                        hideFinished();
+                    }
+                }
             }
         }
     }
+
     // Update is called once per frame
     public void UpdateHealth(int health)
     {
@@ -62,6 +84,14 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("LevelOne");   
      }
          */
+    
+    public void UpdateScore()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = DataManager.instance.score.ToString();
+        }
+    }   
 
     public void LoadLevel(string level)
     {
@@ -116,6 +146,22 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void showFinished()
+    {
+        foreach (GameObject g in finishMenu)
+        {
+            g.SetActive(true);
+        }
+    }
+
+    public void hideFinished()
+    {
+        foreach (GameObject g in finishMenu)
+        {
+            g.SetActive(false);
+        }
+    }
+
     public void showOver()
     {
         foreach (GameObject g in overMenu)
@@ -153,6 +199,7 @@ public class UIManager : MonoBehaviour
         foreach (GameObject g in optionMenu)
         {
             g.SetActive(true);
+            g.GetComponentInChildren<Slider>().value = AudioListener.volume;
         }
     }
 

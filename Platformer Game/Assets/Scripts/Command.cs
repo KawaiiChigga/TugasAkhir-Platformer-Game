@@ -28,6 +28,19 @@ public class FireWeapon : Command  {
     }
 }
 
+public class ChangeWeapon : Command
+{
+    public override void Execute(Robot player)
+    {
+        player.SwapWeapon();
+    }
+
+    public override void Execute()
+    {
+
+    }
+}
+
 public class JumpCommand : Command  {
     public override void Execute(Robot player)  {
         player.Jump();
@@ -143,7 +156,7 @@ public class LoadScene : Command
 
     public void Execute(string level)
     {
-        SceneManager.LoadSceneAsync(level);
+        SceneManager.LoadScene(level);
         DataManager.instance.SetGameState(new PlayingState());
     }
 }

@@ -100,6 +100,22 @@ public abstract class Robot : MonoBehaviour //Alasan abstract class//
         }
     }
 
+    public void SwapWeapon()
+    {
+        if (GetComponentInChildren<Weapon>().projectile.name.Equals("Bullet") && GetComponentInChildren<Weapon>().projectile!=null)
+        {
+            var bombweapon = Resources.Load("Prefabs/Projectiles/Bomb", typeof(Rigidbody2D)) as Rigidbody2D;
+            GetComponentInChildren<Weapon>().cooldown = 1.5f;
+            GetComponentInChildren<Weapon>().projectile = bombweapon;
+        }
+        else
+        {
+            var mgun = Resources.Load("Prefabs/Projectiles/Bullet", typeof(Rigidbody2D)) as Rigidbody2D;
+            GetComponentInChildren<Weapon>().cooldown = 0.07f;
+            GetComponentInChildren<Weapon>().projectile = mgun;
+        }
+    }
+
     public void FlipObject()
     {
         transform.localScale = Vector3.Scale(transform.localScale, MirrorX);

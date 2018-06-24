@@ -100,6 +100,7 @@ public class Enemy : Robot
         GetComponent<Prototype>().ReturnToPool();
         CurrentHealth = StartingHealth;
         GetComponentInChildren<Weapon>().ResetCooldown();
+        DataManager.instance.score += 100;
     }
 
     public void SetAIState(AIState aistate)
