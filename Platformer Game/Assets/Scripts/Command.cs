@@ -24,7 +24,7 @@ public class FireWeapon : Command  {
     }
 
     public override void Execute()  {
-
+        
     }
 }
 

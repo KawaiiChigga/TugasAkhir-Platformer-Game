@@ -14,7 +14,7 @@ public class DamageDetection : MonoBehaviour {
 		
 	}
 
-    public void Damaged(float damage)
+    public void ReceiveDamage(float damage)
     {
         Debug.Log(gameObject.name + " receives " + damage + " damage");
         if(gameObject.tag=="Rider")

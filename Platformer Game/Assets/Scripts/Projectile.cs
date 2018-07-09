@@ -43,7 +43,7 @@ public class Projectile : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            col.SendMessageUpwards("Damaged", damage);
+            col.SendMessageUpwards("ReceiveDamage", damage);
         }
         else
         {

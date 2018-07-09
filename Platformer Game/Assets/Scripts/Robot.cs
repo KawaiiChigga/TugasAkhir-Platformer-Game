@@ -20,7 +20,7 @@ public abstract class Robot : MonoBehaviour //Alasan abstract class//
     private bool grounded = false;
     private Animator anim;
     private Rigidbody2D rb2d;
-    private State currentState;
+    private RobotState currentState;
     private bool dashRecharged;
 
     // Use this for initialization
@@ -34,6 +34,7 @@ public abstract class Robot : MonoBehaviour //Alasan abstract class//
     // Update is called once per frame
     void Update()
     {
+       
     }
 
     // Ngga kepengaruh frame rate   
@@ -67,7 +68,7 @@ public abstract class Robot : MonoBehaviour //Alasan abstract class//
         DashRecharged = false;
     }
 
-    public void SetState(State state)
+    public void SetState(RobotState state)
     {
         if (CurrentState != null)
             CurrentState.OnStateExit();
@@ -155,7 +156,7 @@ public abstract class Robot : MonoBehaviour //Alasan abstract class//
         }
     }
 
-    protected State CurrentState
+    protected RobotState CurrentState
     {
         get
         {

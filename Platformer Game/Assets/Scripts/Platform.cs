@@ -44,7 +44,7 @@ public class Platform : MonoBehaviour
         {
             if (damage > 0)
             {
-                col.SendMessageUpwards("Damaged", damage);
+                col.SendMessageUpwards("ReceiveDamage", damage);
             }
         }        
         if (isTrigger)

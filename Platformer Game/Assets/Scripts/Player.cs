@@ -8,6 +8,7 @@ public class Player : Robot
     private float dashTimer;
     public GameObject UIManager;
     // Use this for initialization
+
     void Awake()
     {
         UIManager.SendMessage("UpdateHealth", CurrentHealth);
@@ -95,7 +96,6 @@ public class Player : Robot
 
     public override void HealthChange()
     {
-        SetState(new DamagedState(this));
         UIManager.SendMessage("UpdateHealth", CurrentHealth);
     }
     public override void Dash()

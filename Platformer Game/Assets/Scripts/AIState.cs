@@ -46,7 +46,7 @@ public class PatrollingState : AIState
 
     public override void OnStateEnter()
     {
-        StateId = 1;
+        
     }
 
     public override void OnStateExit()
@@ -55,30 +55,6 @@ public class PatrollingState : AIState
     }
 }
 
-public class ShootingState : AIState
-{
-    private Vector3 destination;
-
-    public ShootingState(Enemy enemy) : base(enemy)
-    {
-
-    }
-
-    public override void Tick()
-    {
-
-    }
-
-    public override void OnStateEnter()
-    {
-        StateId = 2;
-    }
-
-    public override void OnStateExit()
-    {
-
-    }
-}
 
 public class HoverState : AIState
 {
@@ -90,12 +66,60 @@ public class HoverState : AIState
 
     public override void Tick()
     {
-        enemy.Hover();
+        
     }
 
     public override void OnStateEnter()
     {
         
+    }
+
+    public override void OnStateExit()
+    {
+
+    }
+}
+
+public class UltimateState : AIState
+{
+
+    public UltimateState(Enemy enemy) : base(enemy)
+    {
+
+    }
+
+    public override void Tick()
+    {
+        
+    }
+
+    public override void OnStateEnter()
+    {
+
+    }
+
+    public override void OnStateExit()
+    {
+
+    }
+}
+
+public class FollowingState : AIState
+{
+
+    public FollowingState(Enemy enemy) : base(enemy)
+    {
+
+    }
+
+    public override void Tick()
+    {
+
+    }
+
+    public override void OnStateEnter()
+    {
+
     }
 
     public override void OnStateExit()
